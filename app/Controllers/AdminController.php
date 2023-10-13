@@ -19,4 +19,14 @@ class AdminController extends BaseController
         $data = [];
         return view('admin/register',$data);
     }
+    public function car_list_data()
+    {
+        $data = [];
+        return view('admin/car_list',$data);
+    }
+    public function add_car()
+    {
+        $data = [];
+        return view('admin/add_car',$data);
+    }
 }

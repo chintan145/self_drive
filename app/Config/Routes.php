@@ -34,3 +34,5 @@ $routes->get('/logout', 'LoginController::logout', ['filter' => 'authFilter']);
 $routes->get('/admin', 'AdminController::index');
 $routes->get('/admin/login', 'AdminController::login');
 $routes->get('/admin/register', 'AdminController::register');
+$routes->get('/admin/car_list_data', 'AdminController::car_list_data');
+$routes->get('/admin/add_car', 'AdminController::add_car');
