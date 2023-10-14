@@ -36,3 +36,10 @@ $routes->get('/admin/login', 'AdminController::login');
 $routes->get('/admin/register', 'AdminController::register');
 $routes->get('/admin/car_list_data', 'AdminController::car_list_data');
 $routes->get('/admin/add_car', 'AdminController::add_car');
+// $routes->post('/admin/add_car', 'AdminController::add_car');
+
+
+
+// car insert 
+$routes->post('/admin/car_details_insert', 'BookingController::car_details_insert');
+

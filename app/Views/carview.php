@@ -66,7 +66,7 @@
                         <h5>+ Pickup & Drop Add on charge : Chargeable</h5>
                         <h5>+ Security Deposit Payable After Booking.</h5>
                         <h4 class="mt-3"><span class="text-dark">Grand Total : <span class="p-text-primary">₹2,779.50</span></span></h4>
-                        <button id="carview" data-view_id="1001" class="btn btn-danger book-btn carview mt-3">Book Now</button>
+                        <button id="carview" data-view_id="1001" class="btn btn-danger book-btn book_now     carview mt-3">Book Now</button>
                         <button id="carview" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Cancel    </button>
                     </div>
                 </div>
@@ -108,3 +108,151 @@
 </section>
 
 <?php include 'partials/footer.php'; ?>
+
+<script>
+        $('body').on('click','.book_now',function(e){
+            e.preventDefault();
+            // var view_id = $(this).data('view_id');
+            var url = '<?= base_url('/carlist') ?>';
+
+            window.location.href = url;
+        });
+        $('body').on('click', '.book_now', function (event) {
+            //$("form[name='user_form']")[0].reset();
+            // alert("hello");
+            event.preventDefault();
+            // var editid = $(this).attr("data-edit_id");
+            var city = $('#city').val();
+            var start_date = $('#start_date').val();
+            var start_time = $('#start_time').val();
+            var end_date = $('#end_date').val();
+            var end_time = $('#end_time').val();
+        
+        
+            // console.log(city);
+            // console.log(start_date);
+            // console.log(start_time);
+            // console.log(end_date);
+            // console.log(end_time);
+
+
+
+
+            // if (username != "" && phone != "" && firstname != "" && email != "" && role != "" && department != "" && active_form_time != "" && active_to_time != "" && mob_allocation != "" && job_location != "" && head != "" && head_name != "" && head_name != undefined && head != undefined) {
+                var form = $("form[name='booking_form']")[0];
+                console.log(form);
+                var formdata = new FormData(form);
+
+                formdata.append('table', 'car_booking');
+                formdata.append('action', 'insert');
+
+
+                // if (editid == '' || editid == 'undefined') {
+                    $('.loader').show();
+
+                    $.ajax({
+                        method: "post",
+                        url: "<?= site_url('booking_insert_data'); ?>",
+                        data:  formdata,
+                                processData: false,
+                                contentType: false,
+                        success: function (data) {
+                            var response = JSON.parse(data);
+                            // console.log(response);
+                            if (response.response == 1) {
+                                //if (data != "error") {
+                                $('.loader').hide();
+                                // list_data();
+                                // $(".modal-close-btn").trigger("click");
+                                $("form[name='booking_form']").removeClass("was-validated");
+
+
+                                // $('.modal-close-btn').click(function () {
+                                //     $('form[name="user_form"]')[0].reset();
+                                //     $('.selectpicker').selectpicker('refresh');
+
+                                // });
+                                // iziToast.success({
+                                //     title: response.message
+                                // });
+                                //sweet_edit_sucess(response.message);
+                            } else {
+                                $('.loader').hide();
+                                // iziToast.error({
+                                //     title: response.message
+                                // });
+                            }
+                        }
+                    });
+
+                // } 
+                // else {
+                //     var is_attendance = $("#Adduser input[name='is_attendance']:checked").prop('value');
+                //     var form = $("form[name='user_form']")[0];
+                //     var formdata = new FormData(form);
+
+                //     formdata.append('job_location_id', job_location_id);
+                //     formdata.append('head_name', head_name);
+                //     formdata.append('username', username);
+                //     formdata.append('department', department);
+                //     formdata.append('action', 'update');
+                //     formdata.append('edit_id', editid);
+                //     formdata.append('table', 'user');
+                //     formdata.append('parent_id', parent_id);
+                //     formdata.append('is_attendance', is_attendance);
+                //     $('.loader').show();
+                //     $.ajax({
+                //         method: "post",
+                //         url: "<?= site_url('user_update'); ?>",
+                //         data: formdata,
+                //         processData: false,
+                //         contentType: false,
+                //         success: function (res) {
+                //             var response = JSON.parse(res);
+                //             if (response.response == 1) {
+                //                 $('.loader').hide();
+                //                 list_data();
+                //                 $('.modal-close-btn').click(function () {
+                //                     $('form[name="user_form"]')[0].reset();
+                //                     $('.selectpicker').selectpicker('refresh');
+                //                 });
+                //                 $("form[name='user_form']").removeClass("was-validated");
+                //                 $(".modal-close-btn").trigger("click");
+                //                 iziToast.success({
+                //                     title: response.msg
+                //                 })
+                //             } else {
+                //                 $('.loader').hide();
+                //                 iziToast.warning({
+                //                     title: response.msg
+                //                 })
+                //             }
+                //         },
+                //         error: function (error) { }
+                //     });
+                // }
+            // } else {
+            //     $('.loader').hide();
+            //     $("form[name='user_form']").addClass("was-validated");
+            //     $("form[name='user_form']").find('.selectpicker').each(function () {
+            //         var selectpicker_valid = 0;
+            //         if ($(this).attr('required') == 'undefined') {
+            //             var selectpicker_valid = 0;
+            //         }
+            //         if ($(this).attr('required') == 'required') {
+            //             var selectpicker_valid = 1;
+            //         }
+            //         if (selectpicker_valid == 1) {
+            //             if ($(this).val() == 0 || $(this).val() == '') {
+            //                 $(this).closest("div").addClass('selectpicker-validation');
+            //             } else {
+            //                 $(this).closest("div").removeClass('selectpicker-validation');
+            //             }
+            //         } else {
+            //             $(this).closest("div").removeClass('selectpicker-validation');
+            //         }
+            //     });
+            //     $('.loader').hide();
+            // }
+        });
+</script>

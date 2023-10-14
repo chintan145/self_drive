@@ -26,7 +26,7 @@ class AdminController extends BaseController
     }
     public function add_car()
     {
-        $data = [];
-        return view('admin/add_car',$data);
+        // $data = [];
+        return view('admin/add_car');
     }
 }
