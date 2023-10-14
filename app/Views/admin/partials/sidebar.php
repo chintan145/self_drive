@@ -108,3 +108,14 @@
     </li>
   </ul>
 </nav>
+
+<script>
+  $(document).ready(function(){
+    $('.nav-link').on('click',function(){
+      // if($('.nav-item').hasClass('active')){
+        $('.nav-item').removeClass('active');
+        $(this).closest('nav-item').addClass('active');
+      // }
+    });
+  });
+</script>
