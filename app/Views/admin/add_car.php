@@ -9,7 +9,7 @@
                         <h3>Add Car</h3>
                     </div>
                     <form name="add_car">
-                    <div class="card-body d-flex flex-wrap">
+                        <div class="card-body d-flex flex-wrap">
                         <div class="form-group col-sm-6 col-12">
                             <label for="exampleInputName1">Car Name</label>
                             <input type="text" class="form-control" id="car_name" placeholder="Car Name">

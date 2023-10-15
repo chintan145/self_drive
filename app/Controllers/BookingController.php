@@ -97,6 +97,11 @@ class BookingController extends BaseController
 			   return FALSE;
 		   }
 	   }
+
+	public function book_car() {
+		pre($_POST);
+		pre($_FILES);
+	}
 }
 
 ?>

@@ -64,7 +64,7 @@
                     <div class="container-fluid">
                         <div class="col-lg-2 col-md-3 col-8">
                             <a href="http://localhost/ajasys-new/">
-                                <img src="image/logo_lg_b.svg" alt="logo" class="w-100 px-4 py-2">
+                                <img src="https://play-lh.googleusercontent.com/KbaBYy8aDSgOZ38GCS4P8uusI82HfTY2VK_VLP0lQ--E6kQ4DKOHeqfYGWkEwPTsj2E" alt="logo" style="max-height:90px;" class="w-100 px-4 py-2">
                             </a>
                         </div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

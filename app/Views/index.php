@@ -23,16 +23,16 @@
     </div>
     <div class="container position-absolute top-50 start-50 translate-middle z-1 h-100">
         <div class="row justify-content-between align-items-center h-100">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <!-- <iframe src="https://lottie.host/?file=3a4fc31b-97e1-4b96-b622-1129b0717fd5/mk5yt2CLkv.json" class="w-100 h-100"></iframe> -->
             </div>
-            <div class="col-12 col-md-7 d-flex align-items-center h-100 overflow-y-scroll scroll-none">
+            <div class="col-12 col-md-6 d-flex align-items-center h-100 overflow-y-scroll scroll-none">
                 <form name="booking_form" method="post">
                     <div class="col-12 d-flex justify-content-center flex-wrap">
                         <div class="mb-3 col-12 p-2 ">
                             <label for="user" class="main-lable text-white">City</label>
 
-                            <select name="city" id="city">
+                            <select name="city" id="city" class="form-control">
                                 <option value="">Select City</option>
                                 <option value="surat">surat</option>
                             </select>
@@ -383,6 +383,8 @@
 </section>
 
 <?php include 'partials/footer.php'; ?>
+
+<?php include 'terms-and-conditions.php'; ?>
 
 
 <script>
