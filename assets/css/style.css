@@ -561,3 +561,7 @@ thead {
 .p-text-primary{
     color: var(--second-color);
 }
+
+.modal-bg {
+    background-color: #f6f6f6;
+}

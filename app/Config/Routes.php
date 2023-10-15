@@ -15,6 +15,7 @@ $routes->get('/carview', 'Home::carview');
 
 // booking Route 
 $routes->post('/booking_insert_data', 'BookingController::booking_insert_data');
+$routes->post('/book_car', 'BookingController::book_car');
 
 
 // login route 
