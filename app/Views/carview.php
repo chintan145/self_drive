@@ -66,8 +66,13 @@
                         <h5>+ Pickup & Drop Add on charge : Chargeable</h5>
                         <h5>+ Security Deposit Payable After Booking.</h5>
                         <h4 class="mt-3"><span class="text-dark">Grand Total : <span class="p-text-primary">₹2,779.50</span></span></h4>
+<<<<<<< HEAD
                         <button id="carview" data-view_id="1001" class="btn btn-danger book-btn book_now     carview mt-3">Book Now</button>
                         <button id="carview" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Cancel    </button>
+=======
+                        <button type="button" id="carview" data-view_id="1001" class="btn btn-danger book-btn carview mt-3" data-bs-toggle="modal" data-bs-target="#book_car">Book Now</button>
+                        <button id="cancel_car" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Cancel</button>
+>>>>>>> 072c535008a9324b42a03f2f865285dab02627e4
                     </div>
                 </div>
             </div>
@@ -107,6 +112,7 @@
     </div>
 </section>
 
+<<<<<<< HEAD
 <?php include 'partials/footer.php'; ?>
 
 <script>
@@ -255,4 +261,109 @@
             //     $('.loader').hide();
             // }
         });
+=======
+
+<!-- Modal -->
+<div class="modal fade" id="book_car" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-xl">
+    <div class="modal-content">
+    <div class="modal-header">
+        <div class="title">
+            <h4>Inquiry For a Book Car</h4>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body modal-bg">
+        <form name="bppk_car">
+            <div class="card-body d-flex flex-wrap">
+            <div class="form-group col-sm-4 col-12 px-2 mb-2">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group col-sm-4 col-12 px-2 mb-2">
+                <label for="mobileno">Mobileno</label>
+                <input type="text" class="form-control" id="mobileno" placeholder="Mobileno">
+            </div>
+            <div class="form-group col-sm-4 col-12 px-2 mb-2">
+                <label for="mobileno">Address</label>
+                <input type="text" class="form-control" id="mobileno" placeholder="Address">
+            </div>
+            <div class="form-group col-sm-6 col-12 px-2 mb-2">
+                <label>Aadhar Card Photo</label>
+                <input type="file" name="aadhar_card_img" class="form-control file-upload-default">
+            </div>
+            <div class="form-group col-sm-6 col-12 px-2 mb-2">
+                <label>PanCard Photo</label>
+                <input type="file" name="pancard_img" class="form-control file-upload-default">
+            </div>
+            <div class="form-group col-sm-6 col-12 px-2 mb-2">
+                <label for="aadhar_card_number">Aadhar card Number</label>
+                <input type="text" class="form-control" id="aadhar_card_number" placeholder="Aadhar card Number">
+            </div>
+            <div class="form-group col-sm-6 col-12 px-2 mb-2">
+                <label for="pancard_number">Pancard Number</label>
+                <input type="text" class="form-control" id="pancard_number" placeholder="Pancard Number">
+            </div>
+            <div class="form-group col-sm-4 col-12 px-2 mb-2">
+                <label for="exampleInputPassword4">Bag / Luggage</label>
+                <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Menual">
+            </div>
+            <div class="form-group col-sm-6 col-12 px-2 mb-2">
+                <label for="exampleInputCity1">Age</label>
+                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Age">
+            </div>
+        </form>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-danger" id="book_btn">Submit</button>
+    </div>
+    </div>
+</div>
+</div>
+
+<?php include 'partials/footer.php'; ?>
+
+<script>
+    $(document).ready(function(){
+        $('#book_btn').on('click',function(e){
+            var form = $('form[name="bppk_car"]')[0];
+            var formdata = new FormData(form);
+            $.ajax({
+                method: "post",
+                url: "<?= site_url('book_car'); ?>",
+                data:  formdata,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    // console.log(response);
+                    if (response.response == 1) {
+                        //if (data != "error") {
+                        $('.loader').hide();
+                        // list_data();
+                        // $(".modal-close-btn").trigger("click");
+                        $("form[name='booking_form']").removeClass("was-validated");
+
+
+                        // $('.modal-close-btn').click(function () {
+                        //     $('form[name="user_form"]')[0].reset();
+                        //     $('.selectpicker').selectpicker('refresh');
+
+                        // });
+                        // iziToast.success({
+                        //     title: response.message
+                        // });
+                        //sweet_edit_sucess(response.message);
+                    } else {
+                        $('.loader').hide();
+                        // iziToast.error({
+                        //     title: response.message
+                        // });
+                    }
+                }
+            });
+        });
+    });
+>>>>>>> 072c535008a9324b42a03f2f865285dab02627e4
 </script>

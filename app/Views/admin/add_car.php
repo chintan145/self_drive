@@ -8,8 +8,13 @@
                     <div class="title">
                         <h3>Add Car</h3>
                     </div>
+<<<<<<< HEAD
                     <form name="add_car_insert"  method="post" enctype="multipart/form-data">
                     <div class="card-body d-flex flex-wrap">
+=======
+                    <form name="add_car">
+                        <div class="card-body d-flex flex-wrap">
+>>>>>>> 072c535008a9324b42a03f2f865285dab02627e4
                         <div class="form-group col-sm-6 col-12">
                             <label for="exampleInputName1">Car Name</label>
                             <input type="text" class="form-control" name="car_name" id="car_name" placeholder="Car Name">
