@@ -46,6 +46,7 @@ class BookingController extends BaseController
 					$departmentdisplaydata = $this->MasterInformationModel->display_all_records($table_name);
 					
 					$result['response'] = 1;
+					$result['data'] = $insert_data;
                     $result['message'] = 'Add successfully!';
 					
 					$departmentdisplaydata = json_decode($departmentdisplaydata, true);

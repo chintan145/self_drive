@@ -1,6 +1,16 @@
 <?php include 'partials/header.php'; ?>
 <?php $car_features = json_decode($car_features,true); 
 
+$startDateString = str_replace('_',' ',$_GET['startdate']);
+$endDateString = str_replace('_',' ',$_GET['enddate']);
+
+$startDate = new DateTime($startDateString);
+$endDate = new DateTime($endDateString);
+
+$interval = $startDate->diff($endDate);
+
+$totalHours = $interval->days * 24 + $interval->h;
+
 ?>
 <style>
     .py-30{
@@ -39,9 +49,9 @@
                 <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
                     <h6 class="mb-4">Prices For :</h6>
                     <div class="fromtodate d-flex flex-lg-row flex-column">
-                        <h6 class=""><b>From :</b> <span class="text-danger">05-10-2023 02:00</span></h6>
-                        <h6 class="ms-lg-4 ms-0"><b>To :</b> <span class="text-danger">05-10-2023 12:00</span></h6>
-                        <h6 class="ms-lg-4 ms-0"><b>Total Hour :</b> <span class="text-danger">36</span></h6>
+                        <h6 class=""><b>From :</b> <span class="text-danger"><?php echo $startDateString; ?></span></h6>
+                        <h6 class="ms-lg-4 ms-0"><b>To :</b> <span class="text-danger"><?php echo $endDateString; ?></span></h6>
+                        <h6 class="ms-lg-4 ms-0"><b>Total Hour :</b> <span class="text-danger"><?php echo $totalHours; ?></span></h6>
                     </div>
                     <?php
 foreach ($car_features as $value) { ?>

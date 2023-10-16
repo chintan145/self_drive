@@ -428,8 +428,8 @@
                         method: "post",
                         url: "<?= site_url('booking_insert_data'); ?>",
                         data:  formdata,
-                                processData: false,
-                                contentType: false,
+                        processData: false,
+                        contentType: false,
                         success: function (data) {
                             var response = JSON.parse(data);
                             // console.log(response);
@@ -439,6 +439,8 @@
                                 // list_data();
                                 // $(".modal-close-btn").trigger("click");
                                 $("form[name='booking_form']").removeClass("was-validated");
+
+                                window.location.href = "<?= base_url('') ?>carlist?startdate="+response.data.start_date+'_'+response.data.start_time+"&enddate="+response.data.end_date+'_'+response.data.end_time+"";
 
 
                                 // $('.modal-close-btn').click(function () {
