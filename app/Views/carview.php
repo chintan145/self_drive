@@ -58,6 +58,20 @@
                     </div>
 
                     <div class="contant">
+                        <form name="proof_data">
+                            <label class="mb-3">
+                                <span>Mobile Number</span>
+                                <input type="number" name="mobileno" id="mobileno" class="form-control">        
+                            </label>
+                            <label class="mb-3">
+                                <span>Addar Card Photo</span>
+                                <input type="file" name="addar_card" id="addar_card" class="form-control">        
+                            </label>
+                            <label class="mb-3">
+                                <span>Pan Card Photo</span>
+                                <input type="file" name="pan_card" id="pan_card"  class="form-control">        
+                            </label>
+                        </form>
                         <label class="mb-3">
                             <input type="checkbox" name="drop_facility" id="drop_facility">        
                             <span>Pickup &amp; Drop Facility.</span>
@@ -66,7 +80,8 @@
                         <h5>+ Pickup & Drop Add on charge : Chargeable</h5>
                         <h5>+ Security Deposit Payable After Booking.</h5>
                         <h4 class="mt-3"><span class="text-dark">Grand Total : <span class="p-text-primary">₹2,779.50</span></span></h4>
-                        <button id="carview" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Cancel    </button>
+                        <button id="book-btn" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Book Now</button>
+                        <button id="cancelcarview" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Cancel</button>
                     </div>
                     <img src="<?=base_url('assets/img/car1.png') ?>" alt="" class="w-100" style="max-height : 500px; object-fit: contain;">
                 </div>
@@ -112,6 +127,26 @@
 
             window.location.href = url;
         });
+
+        $('#book-btn').on('click',function(){
+            var form = $('form[name="proof_data"]')[0];
+            var formdata = new FormData(form);
+            var addar_card = $('#addar_card').val();
+            var pan_card = $('#pan_card').val();
+            if(addar_card != '' && pan_card != ''){
+                $.ajax({
+                    method: "post",
+                    url: "<?= site_url('booking_data_insert'); ?>",
+                    data:  formdata,
+                            processData: false,
+                            contentType: false,
+                    success: function (data) {
+                        
+                    }
+                });
+            }
+        });
+
         $('body').on('click', '.book_now', function (event) {
             //$("form[name='user_form']")[0].reset();
             // alert("hello");

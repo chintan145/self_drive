@@ -143,6 +143,38 @@ class BookingController extends BaseController
 		return json_encode($result);
         die();
 	}
-}
+
+	public function booking_data_insert(){
+		// pre($);
+		// if (!empty($this->request->getFile('profile_pic'))) {
+			pre($_POST);
+			pre($_FILES);
+			$img = $this->request->getFile('addar_card');
+			if (!empty($img->getName())) {
+				$newName = $_POST['mobileno']. '_addar_' . strtolower(trim(str_replace(' ', '', $img->getName())));
+				$img->move(ROOTPATH . 'assets/images/proof/', $newName);
+				$image = [
+					'addar_image' => strtolower(trim(str_replace(' ', '', $img->getName()))),
+				];
+			}
+			$img2 = $this->request->getFile('pan_card');
+			if (!empty($img2->getName())) {
+				$newName2 = $_POST['mobileno']. '_pan_' . strtolower(trim(str_replace(' ', '', $img2->getName())));
+				$img2->move(ROOTPATH . 'assets/images/proof/', $newName2);
+				$image2 = [
+					'pan_image' => strtolower(trim(str_replace(' ', '', $img2->getName()))),
+				];
+			}
+
+			$insert_data = $_POST;
+			$insert_data['addar_card'] = $image['addar_image'];
+			$insert_data['pan_card'] = $image2['pan_image'];
+			$table_name = 'car_booking_data';
+			$response = $this->MasterInformationModel->insert_entry($insert_data, $table_name);
+			$result['response'] = 1;
+			$result['message'] = 'Add successfully!';
+		}
+	}
+
 
 ?>
