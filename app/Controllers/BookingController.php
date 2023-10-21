@@ -174,7 +174,7 @@ class BookingController extends BaseController
 			$result['response'] = 1;
 			$result['message'] = 'Add successfully!';
 		}
-	}
+	
 
 	  // list data 
 	  public function admin_car_show_list_data()
@@ -382,6 +382,19 @@ class BookingController extends BaseController
 		   }
 		   die();
 	   }
-
-
-?>
+	     // edit data 
+		 public function edit_data()
+		 {
+		
+			 if ($this->request->getPost("action") == "edit") {
+				 $edit_id = $this->request->getPost('edit_id');
+				//  $username = session_username($_SESSION['username']);
+	 
+				 $table_name = $this->request->getPost('table');
+				 $userEditdata = $this->MasterInformationModel->edit_entry($table_name, $edit_id);
+	 
+				 return json_encode($userEditdata, true);
+			 }
+			 die();
+		 }
+	}

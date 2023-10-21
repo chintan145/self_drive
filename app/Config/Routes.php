@@ -45,4 +45,6 @@ $routes->get('/admin/add_car', 'AdminController::add_car');
 // car insert 
 $routes->post('/admin/car_details_insert', 'BookingController::car_details_insert');
 $routes->post('admin/car_show_list_data', 'BookingController::admin_car_show_list_data');
-$routes->post('admin/car_show_list_data', 'BookingController::admin_car_show_list_data');
+$routes->post('admin/car_view', 'BookingController::view_data');
+$routes->post('/admin/car_edit', 'BookingController::edit_data');
+
