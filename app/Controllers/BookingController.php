@@ -176,5 +176,212 @@ class BookingController extends BaseController
 		}
 	}
 
+	  // list data 
+	  public function admin_car_show_list_data()
+	  {
+		  
+		  $db_connection = db_connect();
+		  $table_name = $_POST['table'];
+  
+		  $action = $_POST['action'];
+	   //    $username = session_username($_SESSION['username']);
+		  $html = "";
+		  $row_count_html = '';
+		  $return_array = array(
+			  'row_count_html' => '',
+			  'html' => '',
+			  'total_page' => 0,
+			  'response' => 0
+		  );
+		  //$allow_data = json_decode($_POST['show_array']);
+		  //$status = get_table_array_helper('master_inquiry_status');
+		  // $get_roll_id_to_roll_duty_var = get_roll_id_to_roll_duty();
+		  $db_connection = \Config\Database::connect();
+	   //    $user_id = 1;
+	   //    if (!$this->admin == 1) {
+	   // 	   $user_id = $_SESSION['id'];
+	   //    }
+		  $status = isset($_POST['datastatus']) && !empty($_POST['datastatus']) ? $_POST['datastatus'] : "";
+		  $perPageCount = isset($_POST['perPageCount']) && !empty($_POST['perPageCount']) ? $_POST['perPageCount'] : 10;
+		  $pageNumber = isset($_POST['pageNumber']) && !empty($_POST['pageNumber']) ? $_POST['pageNumber'] : 1;
+		  $ajaxsearch = isset($_POST['ajaxsearch']) && !empty($_POST['ajaxsearch']) ? $_POST['ajaxsearch'] : '';
+		  $datastatus = isset($_POST['datastatus']) && !empty($_POST['datastatus']) ? $_POST['datastatus'] : "'1','2','3','4','6','7','9','10','11','12','13'";
+		  $which_result = isset($_POST['follow_up_day']) && !empty($_POST['follow_up_day']) ? $_POST['follow_up_day'] : '';
+  
+  
+	   //    $all_gm_under_people = '';
+	   //    $all_gm_under_people = getChildIds($_SESSION['id']);
+	   //    $array_push = array_push($all_gm_under_people);
+	   //    $all_gm_under_people_implode = "'" . implode("', '", $all_gm_under_people) . "'";
+		  $ajaxsearch_query = ' ';
+  
+		  $db = \Config\Database::connect();
+		  $full_name = 'car_features';
+		  if($ajaxsearch != ''){
+			  $ajaxsearch_query .= ' AND CONCAT(car_name) LIKE "%' . $ajaxsearch . '%" ';
+		  }
+	   //    if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+	   // 	   // $sql = $db->query('SELECT * FROM ' . $username . '_all_inquiry ');
+	   // 	   // $sql = "SELECT * FROM " . $full_name WHERE ' . $ajaxsearch_query . ';
+	   // 	   $sql = "SELECT * FROM " . $full_name . " WHERE 1" . $ajaxsearch_query;
+  
+	   //    } else {
+	   // 	   // $sql = "SELECT * FROM $full_name WHERE   (assign_id='" . $_SESSION['id'] . "' OR assign_id IN (" . $all_gm_under_people_implode . ")) . $ajaxsearch_query";
+	   // 	   $sql = "SELECT * FROM $full_name WHERE (assign_id='" . $_SESSION['id'] . "' OR assign_id IN ($all_gm_under_people_implode)) $ajaxsearch_query";
+  
+	   //    }
+		  //pre($sql);
+		   $sql = "SELECT * FROM  `car_features`";
+  
+		  $result = $db_connection->query($sql);
+		  $departmentdisplaydata = $result->getResultArray();
+		  $main_sql = $sql;
+		  $rowCount = $result->getNumRows();
+		  $total_no_of_pages = $rowCount;
+		  $second_last = $total_no_of_pages - 1;
+		  $pagesCount = ceil($rowCount / $perPageCount);
+		  $lowerLimit = ($pageNumber - 1) * $perPageCount;
+  
+		  $sqlQuery = $main_sql . " LIMIT $lowerLimit , $perPageCount";
+		  // SELECT * FROM urvi_all_inquiry WHERE isSiteVisit = 1 ORDER BY id DESC LIMIT 10
+  
+  
+		  $Getresult = $db_connection->query($sqlQuery);
+		  $car_all_data = $Getresult->getResultArray();
+		  // pre($inquiry_all_data);
+		  // die();
+  
+		  $rowCount_child = $Getresult->getNumRows();
+  
+		  $start_entries = $lowerLimit + 1;
+		  $last_entries = $start_entries + $rowCount_child - 1;
+  
+		  $row_count_html .= 'Showing ' . $start_entries . ' to ' . $last_entries . ' of ' . $rowCount . ' entries';
+		  $i = 1;
+		  $loop_break = 0;
+	   //    $status = get_table_array_helper('master_inquiry_status');
+		  $today = date("d-m-Y");
+  
+		  if ($result->getNumRows() > 0) {
+  
+			  $ts = "";
+			  $i = 1;
+  
+			  $html = "";
+		   //    $access = '';
+		   //    $getchild = array();
+		   // //    $user_id = 1;
+		   // //    if (!$this->admin == 1) {
+		   // // 	   $user_id = $_SESSION['id'];
+		   // //    }
+		   //    $getchild = getChildIds($_SESSION['id']);
+		   //    if (!empty($getchild)) {
+		   // 	   array_push($getchild, $user_id);
+		   //    }
+		   //    if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+		   // 	   $projectss = $_SESSION['id'];
+		   // 	   $projectss = explode(",", $_SESSION['id']);
+		   //    } else {
+		   // 	   $projectss = array();
+		   //    }
+			
+			  foreach ($car_all_data as $key => $value) {
+			   
+				  $html .= '<tr>';
+				  $html .= '
+								  <td  class="d-flex">	 
+											 <div class="people-list-trf bg-white px-3 py-2 w-100 admin_car_view" data-bs-toggle="modal"
+												data-bs-target="#admin_car_view" id="people_list_model" data-view_id="' . $value['id'] . '">
+												<div
+												   class="people-list-topbar d-flex align-items-center justify-content-between  flex-wrap">
+												   <div class="d-flex align-items-center col-12 col-xl-4">
+													  <p> ' . $value['id'] . '</p>
+													  <span class="mx-2">' . $value['car_name'] . '</span>
+												   </div>
+												</div>
+												<div class="d-flex align-items-center justify-content-between flex-wrap">
+												   <div class="d-flex align-items-center col-12 col-md-6 col-sm-6 col-xl-3">
+													  <p> bag_allow  :</p>
+													  <span class="mx-1">' . $value['bag_allow'] . '</span>
+												   </div>
+												   <div class="d-flex align-items-center col-12 col-md-6 col-sm-6 col-xl-3">
+													  <p>age : </p>
+													  <span class="mx-1">' . $value['age'] . '</span>
+												   </div>
+												   <div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+													  <p>Fuel : </p>
+													  <span class="mx-1">' . $value['fuel'] . '</span>
+												   </div>
+												   <div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+												   <p>Km : </p>
+												   <span class="mx-1">' . $value['km'] . '</span>
+												</div>
+												<div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+												   <p>Car Image : </p>
+												   <span class="mx-1">' . $value['km'] . '</span>
+												</div>
+												<div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+												   <p>Car Image : </p>
+												   <span class="mx-1">' . $value['km'] . '</span>
+												</div><div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+												   <p>Car Image : </p>
+												   <span class="mx-1">' . $value['km'] . '</span>
+												</div>
+												<div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+												   <p>Pickup Address : </p>
+												   <span class="mx-1">' . $value['pickup_address'] . '</span>
+												</div>
+												<div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+												   <p>Seater : </p>
+												   <span class="mx-1">' . $value['seater'] . '</span>
+												</div>
+												<div class="d-flex align-items-center col-12 col-md-6 col-sm-6  col-xl-3">
+												   <p>Gear : </p>
+												   <span class="mx-1">' . $value['gear'] . '</span>
+												</div>
+												</div>
+											 </div>
+											 </td>';
+				  $html .= '</tr>';
+				  //}
+				  //}
+			  }
+			  // pre($html);
+			  $return_array['row_count_html'] = $row_count_html;
+			  $return_array['html'] = $html;
+			  $return_array['total_page'] = $pagesCount;
+			  $return_array['response'] = 1;
+		  } else {
+			  $return_array['row_count_html'] = "Page 0 of 0";
+			  $return_array['total_page'] = 0;
+			  $return_array['response'] = 1;
+			  $return_array['html'] = '<p style="text-align:center;">Data Not Found </p>';
+		  }
+  
+		  // if($perPageCount <= 800){
+		  echo json_encode($return_array);
+		  // } else {
+		  //     return $return_array;
+		  // }
+		  die();
+	  }
+
+	   // view data 
+	   public function view_data()
+	   {
+		   if ($this->request->getPost("action") == "view") {
+			   $view_id = $this->request->getPost('view_id');
+			   $table_name = $this->request->getPost('table');
+			   // $username = session_username($_SESSION['username']);
+   
+			   $userEditdata = $this->MasterInformationModel->edit_entry('car_features', $view_id);
+			   $inquirydata = get_object_vars($userEditdata[0]);
+   
+			   
+			   return json_encode($userEditdata, true);
+		   }
+		   die();
+	   }
+
 
 ?>

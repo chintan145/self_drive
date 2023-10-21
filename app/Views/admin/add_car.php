@@ -8,13 +8,8 @@
                     <div class="title">
                         <h3>Add Car</h3>
                     </div>
-<<<<<<< HEAD
                     <form name="add_car_insert"  method="post" enctype="multipart/form-data">
                     <div class="card-body d-flex flex-wrap">
-=======
-                    <form name="add_car">
-                        <div class="card-body d-flex flex-wrap">
->>>>>>> 072c535008a9324b42a03f2f865285dab02627e4
                         <div class="form-group col-sm-6 col-12">
                             <label for="exampleInputName1">Car Name</label>
                             <input type="text" class="form-control" name="car_name" id="car_name" placeholder="Car Name">
@@ -75,7 +70,8 @@
                             <button type="submit" class="btn btn-primary mr-2 submit_car_inst">Submit</button>
                             <button class="btn btn-light">Cancel</button>
                         </div> -->
-                        <input type="button" value="" class="btn-primary mr-2 submit_car_inst">
+                        <!-- <input type="button" value="" class="btn-primary mr-2 submit_car_inst"> -->
+                        <button type="button" class="btn btn-primary submit_car_inst">Primary</button>
                     </form>
                 </div>
             </div>
@@ -88,7 +84,7 @@
 <script>
 
 function readURL(input) {
-    alert();
+    // alert();
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {

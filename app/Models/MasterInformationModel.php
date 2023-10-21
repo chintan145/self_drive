@@ -9,7 +9,11 @@ class MasterInformationModel extends Model{
         $this->db =& $db;
         helper('custom');
     }
-
+    public function edit_entry($tablename, $edit_id)
+    {
+        $result = $this->db->table($tablename)->where("id", $edit_id)->get();
+        return $result->getResult();
+    }
     public function insert_entry($data,$tablename){
         $this->db->table($tablename)->insert($data);
         $insert_id = $this->db->insertID();
