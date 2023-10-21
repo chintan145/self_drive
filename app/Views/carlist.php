@@ -1,15 +1,38 @@
 <?php include 'partials/header.php'; ?>
 <?php $car_features = json_decode($car_features,true); 
+if(isset($_GET['startdate'])){
+    $startDateString = str_replace('_',' ',$_GET['startdate']);
+    $startDate = new DateTime($startDateString);
+} else {
+    $startDateString = '';
+    $startDate = '';
+    ?>
+        <script>
+            window.location.href = "<?= base_url(); ?>";
+        </script>
+    <?php
+}
+if(isset($_GET['startdate'])){
+    $endDateString = str_replace('_',' ',$_GET['enddate']);
+    $endDate = new DateTime($endDateString);
+} else {
+    $endDateString = '';
+    $endDate = '';
+    ?>
+        <script>
+            window.location.href = "<?= base_url(); ?>";
+        </script>
+    <?php
+}
 
-$startDateString = str_replace('_',' ',$_GET['startdate']);
-$endDateString = str_replace('_',' ',$_GET['enddate']);
+if(isset($_GET['startdate']) && isset($_GET['startdate'])){
+    $interval = $startDate->diff($endDate);
+    
+    $totalHours = $interval->days * 24 + $interval->h;
+} else {
+    $totalHours = '';
 
-$startDate = new DateTime($startDateString);
-$endDate = new DateTime($endDateString);
-
-$interval = $startDate->diff($endDate);
-
-$totalHours = $interval->days * 24 + $interval->h;
+}
 
 ?>
 <style>
