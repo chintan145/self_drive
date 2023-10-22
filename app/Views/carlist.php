@@ -164,7 +164,7 @@ if (isset($_GET['startdate']) && isset($_GET['startdate'])) {
             var start_date = $('.start_date').text();
             var end_date = $('.end_date').text();
             var total_hour = $('.total_hour').text();
-            var city = '<?= $_GET['city']; ?>';
+            var city = '<?php echo isset($_GET['city']) &&  $_GET['city'] != '' ? $_GET['city'] : ''; ?>';
 
             start_date = start_date.replace(' ','_');
             end_date = end_date.replace(' ','_');
