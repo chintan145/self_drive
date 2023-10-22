@@ -18,7 +18,7 @@ $routes->post('/booking_insert_data', 'BookingController::booking_insert_data');
 $routes->post('/book_car', 'BookingController::book_car');
 $routes->post('/booking_data_insert', 'BookingController::booking_data_insert');
 $routes->post('/view_car_data', 'BookingController::view_car_data');
-$routes->post('/car_list', 'BookingController::car_list');
+$routes->post('/booking_car_list', 'BookingController::booking_car_list');
 $routes->get('/thankyoupage', 'Home::thankyoupage');
 
 
@@ -50,3 +50,4 @@ $routes->post('/admin/car_details_insert', 'BookingController::car_details_inser
 $routes->post('admin/car_show_list_data', 'BookingController::admin_car_show_list_data');
 $routes->post('admin/car_view', 'BookingController::view_data');
 $routes->post('/admin/car_edit', 'BookingController::edit_data');
+

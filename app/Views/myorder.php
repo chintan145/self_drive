@@ -1,5 +1,7 @@
 <?php include 'partials/header.php'; ?>
-
+<?php
+$session = session();
+?>
 <section class="py-50">
     <div class="container">
         <div class="row">
@@ -24,10 +26,34 @@
                         </tr>
                     </thead>
                     <tbody id="booking_show_list">
+                        <!-- <tr id="7349">
+                            <td>7349</td>
+                            <td><img style="width:100px;" src="https://www.justdrive.co.in/cpadmin/upload/car/200x200/26316347dd85f8d9d262f703e2d4b348.png"></td>
+                            <td>Maruti Swift</td>
+                            <td>Surat</td>
+                            <td>Sep 03, 2022 at 18:00</td>
+                            <td>Sep 05, 2022 at 4:00</td>
+                            <td>34</td>
+                            <td>₹3,799.50</td>
+                            <td><span class="status success-bar">
+                                    <div class="icon">&#10003;</div>Booked
+                                </span></td>
+                            <td>Sep 03, 2022 at 04:16 pm</td>
+                            <td><a class="btn default btn-xs green-stripe" href="javascript: myorder_dialog_view('7349');">View </a>
 
+                            </td>
+                        </tr> -->
                     </tbody>
                 </table>
-
+                <div class="d-flex justify-content-between align-items-center row-count-main-section flex-wrap">
+                    <div class="row_count_div col-xl-6 col-12">
+                        <p id="row_count"></p>
+                    </div>
+                    <div class="clearfix  col-xl-6 col-12">
+                        <ul class="inq_pagination justify-content-xl-end" id="inq_pagination">
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -58,6 +84,7 @@
 </div>
 
 <?php include 'partials/footer.php'; ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -76,7 +103,7 @@
         }
     });
 
-    function list_data(table = 'car_features', datastatus = '', pageNumber = 1, perPageCount = 10, ajaxsearch = "", filter = "", formdata = "", action = true) {
+    function list_data(table = 'car_booking_data', datastatus = '', pageNumber = 1, perPageCount = 10, ajaxsearch = "", filter = "", formdata = "", action = true) {
         <?php if (isset($_GET['mobileno'])) { ?>
             var mobileno = '<?php echo $_GET['mobileno']; ?>';
         <?php } ?>
@@ -126,7 +153,7 @@
         $.ajax({
             datatype: 'json',
             method: "POST",
-            url: 'car_show_list_data',
+            url: 'booking_car_list',
             data: data,
             processData: processdd,
             contentType: contentType,
@@ -148,7 +175,7 @@
                     }
                     // $('#inquiry_all_status_list').html(res);
                     $('#row_count').html(result.row_count_html);
-                    $('#admin_car_list').html(result.html);
+                    $('#booking_show_list').html(result.html);
                     $('.inq_pagination').twbsPagination({
                         totalPages: total_page,
                         visiblePages: 4,

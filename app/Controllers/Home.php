@@ -30,6 +30,7 @@ class Home extends BaseController
         return view('carlist',$data);
     }
     public function myorder() {
+        $session = session();
         return view('myorder');
     }
     public function carview() {

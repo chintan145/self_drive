@@ -3,6 +3,7 @@
 
 
 namespace App\Controllers;
+
 use App\Models\MasterInformationModel;
 
 use Config\Database;
@@ -15,6 +16,8 @@ class BookingController extends BaseController
 	{
 		helper('custom');
 		$db = db_connect();
+		$session = session();
+
 		$this->MasterInformationModel = new MasterInformationModel($db);
 		// $this->username = session_username($_SESSION['username']);
 		// $this->admin = 0;
@@ -56,7 +59,155 @@ class BookingController extends BaseController
 		return json_encode($result);
 		die();
 	}
+	function booking_car_list()
+	{
 
+		$db_connection = db_connect();
+		$table_name = $_POST['table'];
+
+		$action = $_POST['action'];
+		//    $username = session_username($_SESSION['username']);
+		$html = "";
+		$row_count_html = '';
+		$return_array = array(
+			'row_count_html' => '',
+			'html' => '',
+			'total_page' => 0,
+			'response' => 0
+		);
+		//$allow_data = json_decode($_POST['show_array']);
+		//$status = get_table_array_helper('master_inquiry_status');
+		// $get_roll_id_to_roll_duty_var = get_roll_id_to_roll_duty();
+		$db_connection = \Config\Database::connect();
+		//    $user_id = 1;
+		//    if (!$this->admin == 1) {
+		// 	   $user_id = $_SESSION['id'];
+		//    }
+		$status = isset($_POST['datastatus']) && !empty($_POST['datastatus']) ? $_POST['datastatus'] : "";
+		$perPageCount = isset($_POST['perPageCount']) && !empty($_POST['perPageCount']) ? $_POST['perPageCount'] : 10;
+		$pageNumber = isset($_POST['pageNumber']) && !empty($_POST['pageNumber']) ? $_POST['pageNumber'] : 1;
+		$ajaxsearch = isset($_POST['ajaxsearch']) && !empty($_POST['ajaxsearch']) ? $_POST['ajaxsearch'] : '';
+		$datastatus = isset($_POST['datastatus']) && !empty($_POST['datastatus']) ? $_POST['datastatus'] : "'1','2','3','4','6','7','9','10','11','12','13'";
+		$which_result = isset($_POST['follow_up_day']) && !empty($_POST['follow_up_day']) ? $_POST['follow_up_day'] : '';
+
+
+		//    $all_gm_under_people = '';
+		//    $all_gm_under_people = getChildIds($_SESSION['id']);
+		//    $array_push = array_push($all_gm_under_people);
+		//    $all_gm_under_people_implode = "'" . implode("', '", $all_gm_under_people) . "'";
+		$ajaxsearch_query = ' ';
+
+		$db = \Config\Database::connect();
+		$full_name = 'car_features';
+		if ($ajaxsearch != '') {
+			$ajaxsearch_query .= ' AND CONCAT(car_name) LIKE "%' . $ajaxsearch . '%" ';
+		}
+		//    if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+		// 	   // $sql = $db->query('SELECT * FROM ' . $username . '_all_inquiry ');
+		// 	   // $sql = "SELECT * FROM " . $full_name WHERE ' . $ajaxsearch_query . ';
+		// 	   $sql = "SELECT * FROM " . $full_name . " WHERE 1" . $ajaxsearch_query;
+
+		//    } else {
+		// 	   // $sql = "SELECT * FROM $full_name WHERE   (assign_id='" . $_SESSION['id'] . "' OR assign_id IN (" . $all_gm_under_people_implode . ")) . $ajaxsearch_query";
+		// 	   $sql = "SELECT * FROM $full_name WHERE (assign_id='" . $_SESSION['id'] . "' OR assign_id IN ($all_gm_under_people_implode)) $ajaxsearch_query";
+
+		//    }
+		//pre($sql);
+
+		$sql = "SELECT * FROM `car_booking_data` WHERE user_id = " . $_SESSION['id'];
+
+
+		$result = $db_connection->query($sql);
+		$departmentdisplaydata = $result->getResultArray();
+		$main_sql = $sql;
+		$rowCount = $result->getNumRows();
+		$total_no_of_pages = $rowCount;
+		$second_last = $total_no_of_pages - 1;
+		$pagesCount = ceil($rowCount / $perPageCount);
+		$lowerLimit = ($pageNumber - 1) * $perPageCount;
+
+		$sqlQuery = $main_sql . " LIMIT $lowerLimit , $perPageCount";
+		// SELECT * FROM urvi_all_inquiry WHERE isSiteVisit = 1 ORDER BY id DESC LIMIT 10
+
+
+		$Getresult = $db_connection->query($sqlQuery);
+		$car_all_data = $Getresult->getResultArray();
+		// pre($inquiry_all_data);
+		// die();
+
+		$rowCount_child = $Getresult->getNumRows();
+
+		$start_entries = $lowerLimit + 1;
+		$last_entries = $start_entries + $rowCount_child - 1;
+
+		$row_count_html .= 'Showing ' . $start_entries . ' to ' . $last_entries . ' of ' . $rowCount . ' entries';
+		$i = 1;
+		$loop_break = 0;
+		//    $status = get_table_array_helper('master_inquiry_status');
+		$today = date("d-m-Y");
+
+		if ($result->getNumRows() > 0) {
+
+			$ts = "";
+			$i = 1;
+
+			$html = "";
+		
+
+			foreach ($car_all_data as $key => $value) {
+				$car_details = "";
+				if (isset($value['car_id']) && !empty($value['car_id'])) {
+					$car_type_name = IdToFieldGetData('car_name', "id=" . $value['car_id'] . "", "car_features");
+					$car_details = isset($car_type_name['car_name']) && !empty($car_type_name['car_name']) ? $car_type_name['car_name'] : '';
+				}
+
+				$car_price = "";
+				if (isset($value['car_id']) && !empty($value['car_id'])) {
+					$car_full_price = IdToFieldGetData('price', "id=" . $value['car_id'] . "", "car_features");
+					$car_price = isset($car_full_price['price']) && !empty($car_full_price['price']) ? $car_full_price['price'] : '';
+				}
+
+				$car_full_image = "";
+				if (isset($value['car_id']) && !empty($value['car_id'])) {
+					$car_image = IdToFieldGetData('car_image', "id=" . $value['car_id'] . "", "car_features");
+					$car_full_image = isset($car_image['car_image']) && !empty($car_image['car_image']) ? $car_full_price['car_image'] : '';
+				}
+			
+				$html .= '<tr>';
+				$html .= '  
+				<td>' . $value['id'] . '</td>
+				<td><a class="dropdown-item" href="'<?= base_url('assets/images/carimages/' . $car_full_image);'"> </td>
+				<td>' . $car_details . '</td>
+				<td>' . $value['city'] . '</td>
+				<td>' . $value['start_date'] . '</td>
+				<td>' . $value['end_date'] . '</td>
+				<td>' . $value['id'] . '</td>
+				<td>₹' . $car_price . '</td>
+				<td><span class="status pending-bar"><div class="icon">&#9654;</div>pending</span></td>
+				<td>' . $value['created_at'] . '</td>';
+				$html .= '</tr>';
+				//}
+				//}
+			}
+			// pre($html);
+			$return_array['row_count_html'] = $row_count_html;
+			$return_array['html'] = $html;
+			$return_array['total_page'] = $pagesCount;
+			$return_array['response'] = 1;
+		} else {
+			$return_array['row_count_html'] = "Page 0 of 0";
+			$return_array['total_page'] = 0;
+			$return_array['response'] = 1;
+			$return_array['html'] = '<p style="text-align:center;">Data Not Found </p>';
+		}
+
+		// if($perPageCount <= 800){
+		echo json_encode($return_array);
+		// } else {
+		//     return $return_array;
+		// }
+		die();
+	}
 	// dublicate data 
 
 	public function duplicate_data($data, $table)
@@ -120,7 +271,7 @@ class BookingController extends BaseController
 
 			if (!empty($_POST)) {
 				$insert_data = $_POST;
-				if(isset($image) && !empty($image)){
+				if (isset($image) && !empty($image)) {
 					$insert_data['car_image'] = $image['car_image'];
 				}
 				$isduplicate = $this->duplicate_data($insert_data, $table_name);
@@ -184,7 +335,7 @@ class BookingController extends BaseController
 		$result['response'] = 1;
 		$result['message'] = 'Add successfully!';
 
-		return json_encode($result,true);
+		return json_encode($result, true);
 	}
 
 
@@ -410,13 +561,14 @@ class BookingController extends BaseController
 		die();
 	}
 
-	public function view_car_data() {
+	public function view_car_data()
+	{
 		$view_id = $this->request->getPost('view_id');
 
-		if(!empty($view_id)){
+		if (!empty($view_id)) {
 			$table_name = $this->request->getPost('table');
 			$userEditdata = $this->MasterInformationModel->edit_entry($table_name, $view_id);
-			if(isset($userEditdata[0])){
+			if (isset($userEditdata[0])) {
 				$returndata = $userEditdata[0];
 			} else {
 				$returndata = $userEditdata;
@@ -424,6 +576,4 @@ class BookingController extends BaseController
 			return json_encode($returndata, true);
 		}
 	}
-	
-
 }
