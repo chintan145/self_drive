@@ -1,6 +1,6 @@
 <?php include 'partials/header.php'; ?>
 <?php $car_features = json_decode($car_features, true);
-if (isset($_GET['startdate'])) {
+if (isset($_GET['startdate']) && $_GET['startdate'] != '_') {
     $startDateString = str_replace('_', ' ', $_GET['startdate']);
     $startDate = new DateTime($startDateString);
 } else {
@@ -12,12 +12,20 @@ if (isset($_GET['startdate'])) {
     </script>
 <?php
 }
-if (isset($_GET['enddate'])) {
+if (isset($_GET['enddate']) && $_GET['enddate'] != '_') {
     $endDateString = str_replace('_', ' ', $_GET['enddate']);
     $endDate = new DateTime($endDateString);
 } else {
     $endDateString = '';
     $endDate = '';
+?>
+    <script>
+        window.location.href = "<?= base_url(); ?>";
+    </script>
+<?php
+}
+
+if (!isset($_GET['city'])) {
 ?>
     <script>
         window.location.href = "<?= base_url(); ?>";
