@@ -159,6 +159,7 @@
     <script src="<?= base_url() ?>assets/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url() ?>assets/js/script.js"></script>
     <script src="<?= base_url() ?>assets/js/dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/iziToast.min.js"></script>
 
     </body>
 

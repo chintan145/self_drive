@@ -13,7 +13,6 @@
     }
 </style>
 
-
 <section class="main-img mian-section position-relative overflow-hidden">
     <div class="position-absolute start-0 top-0 w-100 h-100">
         <img src="https://madhavtechinfo.000webhostapp.com/assets/img/1.png" alt="" class="h-100">

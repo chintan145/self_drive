@@ -14,13 +14,11 @@
                      <thead>
                         <tr>
                            <th>
-                              #
+                              Car Details
                            </th>
                            <th>
                               Car Photo
                            </th>
-
-
                         </tr>
                      </thead>
                      <tbody id="admin_car_list">
@@ -35,7 +33,6 @@
                         </ul>
                      </div>
                   </div>
-
                </div>
             </div>
          </div>
@@ -99,8 +96,10 @@
    </div>
 </div>
 
-<div class="modal fade" id="admin_car_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
+
+
+<div class="modal fade" id="admin_car_edit" tabindex="-1" data-backdrop="static" aria-labelledby="admin_car_edit" aria-hidden="true">
+   <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
          <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">car Edit details</h1>
@@ -178,6 +177,7 @@
          </div>
       </div>
    </div>
+</div>
 </div>
 <?php include 'partials/footer.php' ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>

@@ -4,8 +4,10 @@
 :root {
     --first-color: #2b3140;
     --first-color-rgb: 43, 49, 64;
-    --second-color: #ff1c1c;
-    --second-color-rgb: 255, 28, 28;
+    --second-color: #042940;
+    /* --second-color: #ff1c1c; */
+    --second-color-rgb: 4, 41, 64;
+    /* --second-color-rgb: 255, 28, 28; */
     --white-color: #fff;
     --all-white: #fff;
     --dark-color: #252525;
@@ -165,11 +167,11 @@ ul {
 
 /* btn second */
 .btn-web-secondary {
-    color: var(--second-color);
+    color: var(--white-color);
     font-weight: 400;
     padding: 6px 12px;
     background-color: transparent;
-    border: 2px solid var(--second-color);
+    border: 2px solid var(--white-color);
     overflow: hidden;
     transition: all 0.2s;
     position: relative;
@@ -188,6 +190,7 @@ ul {
 
 .btn-web-secondary:hover {
     color: var(--all-white);
+    border: 2px solid var(--second-color);
     font-weight: 400;
 }
 
@@ -276,6 +279,7 @@ background: linear-gradient(120deg, rgba(255,28,28,1) 0%, rgba(255,92,92,1) 48%,
     padding: 12px;
     padding-left: 16px;
     box-shadow: 0px 5px 10px rgb(0, 0, 0, .2);
+    transition: all .3s;
 }
 
 ::placeholder {
@@ -285,8 +289,8 @@ background: linear-gradient(120deg, rgba(255,28,28,1) 0%, rgba(255,92,92,1) 48%,
 }
 
 .form-control:focus {
-    background-color: rgb(255, 234, 234);
-    color: var(--bs-body-color);
+    background-color: rgba(var(--second-color-rgb),.5);
+    color: var(--second-color);
     box-shadow: none;
     border: 1px solid #f8f8f8;
     outline: none;
@@ -482,6 +486,11 @@ header {
 
 .services .services-icon-box img {
     transform: rotate(-45deg);
+}
+
+.bg2 {
+    background: rgb(255, 28, 28);
+    background: linear-gradient(90deg, rgba(var(--second-color-rgb), 1) 50%, rgba(var(--second-color-rgb), .6) 100%);
 }
 
 .services .services-box h3::before {

@@ -5,18 +5,20 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use Config\Database;
- 
+
+
 class LoginController extends BaseController
 {
-
+    
     protected $db;
-
+    
     public function __construct()
     {
-		helper('custom');
+        helper('custom');
         $db = db_connect();
+        $this->session = \Config\Services::session();
     }
-        
+    
     // public function index()
     // {
     //     return view('login');
@@ -25,8 +27,8 @@ class LoginController extends BaseController
     public function authenticate()
     {
         
-		helper('custom');
         $session = session();
+		helper('custom');
         $db = db_connect();
         // if(isset($_POST['user']) && $_POST['pass']){
             // $email = $_POST['user'];
@@ -54,7 +56,6 @@ class LoginController extends BaseController
                 'email' => $user->email,
                 'isLoggedIn' => TRUE
             ];
-           
             $session->set($ses_data);
             return redirect()->to('/');
         // }

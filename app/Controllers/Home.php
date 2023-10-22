@@ -33,9 +33,13 @@ class Home extends BaseController
         return view('myorder');
     }
     public function carview() {
+        $session = session();
         return view('carview');
     }
     public function register() {
         return view('register');
+    }
+    public function thankyoupage() {
+        return view('thankyoupage');
     }
 }
