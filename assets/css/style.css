@@ -353,6 +353,16 @@ header {
     bottom: 0px;
 }
 
+
+.section-bg {
+    background-color: var(--second-color);
+}
+
+.mx-80 {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
 .header-nav .dropdown-menu li a {
     transition: all 0.4s;
     overflow: hidden;

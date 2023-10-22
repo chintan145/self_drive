@@ -1,11 +1,9 @@
 <?php include 'partials/header.php'; ?>
 <style>
     .main-img {
-        /* background: linear-gradient(rgba(255, 254, 254, 0.445), rgba(0, 0, 0, 0.2)), url("https://madhavtechinfo.000webhostapp.com/assets/img/pexels-tyler-clemmensen-8375817.jpg") left top no-repeat; */
-        /* background-size: cover; */
         width: 100%;
-        height: 100vh;
-        /* background-repeat: no-repeat; */
+        background-image: url(<?= base_url('assets/images/demo-bg.png'); ?>);
+        background-position: center;
     }
 
     .mian-section .form-control:focus {
@@ -13,16 +11,14 @@
     }
 </style>
 
-<section class="main-img mian-section position-relative overflow-hidden">
-    <div class="position-absolute start-0 top-0 w-100 h-100">
-        <img src="https://madhavtechinfo.000webhostapp.com/assets/img/1.png" alt="" class="h-100">
-    </div>
-    <div class="position-absolute start-0 bottom-0 w-100 d-md-block d-none">
-        <img src="https://madhavtechinfo.000webhostapp.com/assets/img/Subtract.png" alt="" class="w-100">
-    </div>
-    <div class="container position-absolute top-50 start-50 translate-middle z-1 h-100">
+<section class="main-img mian-section position-relative overflow-hidden section-bg">
+    <!-- <div class="position-absolute start-0 top-0 w-100">
+        <img src="<?= base_url('assets/images/demo-bg.png'); ?>" alt="" class="w-100 h-100">
+    </div> -->
+    <div class="container z-1 h-100  mx-80">
         <div class="row justify-content-between align-items-center h-100">
-            <div class="col-md-6">
+            <div class="col-md-6 p-4 text-center">
+                <img src="<?= base_url('assets/images/main-section.png'); ?>" class="w-75" alt="">
                 <!-- <iframe src="https://lottie.host/?file=3a4fc31b-97e1-4b96-b622-1129b0717fd5/mk5yt2CLkv.json" class="w-100 h-100"></iframe> -->
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center h-100 overflow-y-scroll scroll-none">
@@ -428,7 +424,7 @@
                                 // $(".modal-close-btn").trigger("click");
                                 $("form[name='booking_form']").removeClass("was-validated");
 
-                                window.location.href = "<?= base_url('') ?>carlist?startdate="+response.data.start_date+'_'+response.data.start_time+"&enddate="+response.data.end_date+'_'+response.data.end_time+"";
+                                window.location.href = "<?= base_url('') ?>carlist?startdate="+response.data.start_date+'_'+response.data.start_time+"&enddate="+response.data.end_date+'_'+response.data.end_time+"&city="+city;
 
 
                                 // $('.modal-close-btn').click(function () {

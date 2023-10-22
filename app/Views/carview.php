@@ -42,11 +42,11 @@ if (isset($_GET['totalhour'])) {
                     <div class="mb-3 shadow-sm p-3 rounded bg-white border border-dark-subtle">
                         <div class="content">
                             <span class="text-dark">Start Date : </span>
-                            <span class="p-text-primary"><?= $startDateString ?></span>
+                            <span class="p-text-primary startDateString"><?= $startDateString ?></span>
                         </div>
                         <div class="content">
                             <span class="text-dark">End Date : </span>
-                            <span class="p-text-primary"><?= $endDateString ?></span>
+                            <span class="p-text-primary endDateString"><?= $endDateString ?></span>
                         </div>
                         <div class="content">
                             <span class="text-dark">Pickup & Drop Address : </span>
@@ -199,9 +199,15 @@ if (isset($_GET['totalhour'])) {
             var driving_license = $('#driving_license').val();
             var user_id = '<?= $_SESSION['id']; ?>';
             var car_id = '<?= $_GET['view_id']; ?>';
+            var startDateString = $('.startDateString').text();
+            var endDateString = $('.endDateString').text();
+            var city = '<?= $_GET['city']; ?>';
             // console.log(user_id);
             formdata.append('user_id',user_id);
             formdata.append('car_id',car_id);
+            formdata.append('start_date',startDateString);
+            formdata.append('end_date',endDateString);
+            formdata.append('city',city);
             // if(number != '' && addar_card != '' && pan_card != '' && driving_license != ''){
                 formdata.append('drop_facility',1);
                 $.ajax({

@@ -156,12 +156,13 @@ if (isset($_GET['startdate']) && isset($_GET['startdate'])) {
             var start_date = $('.start_date').text();
             var end_date = $('.end_date').text();
             var total_hour = $('.total_hour').text();
+            var city = '<?= $_GET['city']; ?>';
 
             start_date = start_date.replace(' ','_');
             end_date = end_date.replace(' ','_');
             total_hour = total_hour.replace(' ','_');
 
-            window.location.href = url + '?view_id=' + view_id+'&'+"startdate="+start_date+"&enddate="+end_date+"&totalhour="+total_hour;
+            window.location.href = url + '?view_id=' + view_id+'&'+"startdate="+start_date+"&enddate="+end_date+"&totalhour="+total_hour+'&city='+city;
         });
 
         
