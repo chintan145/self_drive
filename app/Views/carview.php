@@ -198,8 +198,10 @@ if (isset($_GET['totalhour'])) {
             var pan_card = $('#pan_card').val();
             var driving_license = $('#driving_license').val();
             var user_id = '<?= $_SESSION['id']; ?>';
+            var car_id = '<?= $_GET['view_id']; ?>';
             // console.log(user_id);
             formdata.append('user_id',user_id);
+            formdata.append('car_id',car_id);
             // if(number != '' && addar_card != '' && pan_card != '' && driving_license != ''){
                 formdata.append('drop_facility',1);
                 $.ajax({
@@ -222,7 +224,7 @@ if (isset($_GET['totalhour'])) {
                                 message: 'Successfully recorded Your Data!,We are Contact You Soon',
                             });
                             setTimeout(function(){
-                                window.location.href = '<?= base_url('/thankyoupage'); ?>';
+                                window.location.href = '<?= base_url('/thankyoupage'); ?>'; 
                             },3000);
                         }
                     }
