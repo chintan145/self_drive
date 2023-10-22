@@ -26,43 +26,43 @@
                 <!-- <iframe src="https://lottie.host/?file=3a4fc31b-97e1-4b96-b622-1129b0717fd5/mk5yt2CLkv.json" class="w-100 h-100"></iframe> -->
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center h-100 overflow-y-scroll scroll-none">
-                <form name="booking_form" method="post">
+                <form class="needs-validation" novalidate name="booking_form" method="post">
                     <div class="col-12 d-flex justify-content-center flex-wrap">
                         <div class="mb-3 col-12 p-2 ">
                             <label for="user" class="main-lable text-white">City</label>
 
-                            <select name="city" id="city" class="form-control">
+                            <select name="city" id="city" required class="form-control">
                                 <option value="">Select City</option>
                                 <option value="surat">surat</option>
                             </select>
                         </div>
                         <div class="mb-3 col-12 col-md-6 p-2 ">
                             <label for="pass" class="main-lable text-white">Start Date</label>
-                            <input type="date" name="start_date" class="form-control start_date" id="start_date" placeholder="Start Date">
+                            <input type="date" required name="start_date" class="form-control start_date" id="start_date" placeholder="Start Date">
                         </div>
 
                         <div class="mb-3 col-12 col-md-6 p-2 ">
                             <label for="pass" class="main-lable text-white">Start Time</label>
-                            <input type="time" name="start_time" class="form-control start_time" id="start_time" placeholder="Start Time">
+                            <input type="time" name="start_time" required class="form-control start_time" id="start_time" placeholder="Start Time">
                         </div>
 
                         <div class="mb-3 col-12 col-md-6 p-2 ">
                             <label for="pass" class="main-lable text-white">End Date</label>
-                            <input type="date" name="end_date" class="form-control" id="end_date" placeholder="End Date">
+                            <input type="date" name="end_date" required class="form-main form-control" id="end_date" placeholder="End Date">
                         </div>
 
                         <div class="mb-3 col-12 col-md-6 p-2 ">
                             <label for="pass" class="main-lable text-white">End Time</label>
-                            <input type="time" name="end_time" class="form-control" id="end_time" placeholder="End Time">
-                        </div>
-                        <div class="mb-3 col-12 d-flex align-items-end pb-3 justify-content-center ">
-                            <button class="btn-web-secondary w-25 mt-1 book_now" id="book_now">Book Now</button>
+                            <input type="time" name="end_time" required class="form-control" id="end_time" placeholder="End Time">
                         </div>
                         <div class="form-check mb-md-0 mb-4">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" required type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label text-white" for="flexCheckDefault">
                                 I agree to these Terms and Conditions.
                             </label>
+                        </div>
+                        <div class="mb-3 col-12 d-flex align-items-end pb-3 justify-content-center ">
+                            <button class="btn-web-secondary w-25 mt-1 book_now" id="book_now">Book Now</button>
                         </div>
                     </div>
                 </form>
@@ -401,19 +401,8 @@
             var end_date = $('#end_date').val();
             var end_time = $('#end_time').val();
         
-        
-            // console.log(city);
-            // console.log(start_date);
-            // console.log(start_time);
-            // console.log(end_date);
-            // console.log(end_time);
-
-
-
-
-            // if (username != "" && phone != "" && firstname != "" && email != "" && role != "" && department != "" && active_form_time != "" && active_to_time != "" && mob_allocation != "" && job_location != "" && head != "" && head_name != "" && head_name != undefined && head != undefined) {
+            if (city != "" && start_date != "" && start_time != "" && end_date != "" && end_time != "" ) {
                 var form = $("form[name='booking_form']")[0];
-                console.log(form);
                 var formdata = new FormData(form);
 
                 formdata.append('table', 'car_booking');
@@ -459,76 +448,30 @@
                             }
                         }
                     });
-
-                // } 
-                // else {
-                //     var is_attendance = $("#Adduser input[name='is_attendance']:checked").prop('value');
-                //     var form = $("form[name='user_form']")[0];
-                //     var formdata = new FormData(form);
-
-                //     formdata.append('job_location_id', job_location_id);
-                //     formdata.append('head_name', head_name);
-                //     formdata.append('username', username);
-                //     formdata.append('department', department);
-                //     formdata.append('action', 'update');
-                //     formdata.append('edit_id', editid);
-                //     formdata.append('table', 'user');
-                //     formdata.append('parent_id', parent_id);
-                //     formdata.append('is_attendance', is_attendance);
-                //     $('.loader').show();
-                //     $.ajax({
-                //         method: "post",
-                //         url: "<?= site_url('user_update'); ?>",
-                //         data: formdata,
-                //         processData: false,
-                //         contentType: false,
-                //         success: function (res) {
-                //             var response = JSON.parse(res);
-                //             if (response.response == 1) {
-                //                 $('.loader').hide();
-                //                 list_data();
-                //                 $('.modal-close-btn').click(function () {
-                //                     $('form[name="user_form"]')[0].reset();
-                //                     $('.selectpicker').selectpicker('refresh');
-                //                 });
-                //                 $("form[name='user_form']").removeClass("was-validated");
-                //                 $(".modal-close-btn").trigger("click");
-                //                 iziToast.success({
-                //                     title: response.msg
-                //                 })
-                //             } else {
-                //                 $('.loader').hide();
-                //                 iziToast.warning({
-                //                     title: response.msg
-                //                 })
-                //             }
-                //         },
-                //         error: function (error) { }
-                //     });
                 // }
-            // } else {
-            //     $('.loader').hide();
-            //     $("form[name='user_form']").addClass("was-validated");
-            //     $("form[name='user_form']").find('.selectpicker').each(function () {
-            //         var selectpicker_valid = 0;
-            //         if ($(this).attr('required') == 'undefined') {
-            //             var selectpicker_valid = 0;
-            //         }
-            //         if ($(this).attr('required') == 'required') {
-            //             var selectpicker_valid = 1;
-            //         }
-            //         if (selectpicker_valid == 1) {
-            //             if ($(this).val() == 0 || $(this).val() == '') {
-            //                 $(this).closest("div").addClass('selectpicker-validation');
-            //             } else {
-            //                 $(this).closest("div").removeClass('selectpicker-validation');
-            //             }
-            //         } else {
-            //             $(this).closest("div").removeClass('selectpicker-validation');
-            //         }
-            //     });
-            //     $('.loader').hide();
-            // }
+            } else {
+                $('.loader').hide();
+                $("form[name='booking_form']").addClass("was-validated");
+                $("form[name='booking_form']").find('.selectpicker').each(function () {
+                    var selectpicker_valid = 0;
+                    if ($(this).attr('required') == 'undefined') {
+                        var selectpicker_valid = 0;
+                    }
+                    if ($(this).attr('required') == 'required') {
+                        var selectpicker_valid = 1;
+                    }
+                    if (selectpicker_valid == 1) {
+                        if ($(this).val() == 0 || $(this).val() == '') {
+                            $(this).closest("div").addClass('selectpicker-validation');
+                        } else {
+                            $(this).closest("div").removeClass('selectpicker-validation');
+                        }
+                    } else {
+                        $(this).closest("div").removeClass('selectpicker-validation');
+                    }
+                });
+                $('.loader').hide();
+            }
         });
     });
 </script>

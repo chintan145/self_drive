@@ -12,7 +12,7 @@
                         <div class="card-body d-flex flex-wrap">
                             <div class="form-group col-sm-6 col-12">
                                 <label for="exampleInputName1">Car Name</label>
-                                <input type="text" class="form-control" name="car_name" id="car_name" placeholder="Car Name">
+                                <input type="text" class="form-control" required name="car_name" id="car_name" placeholder="Car Name">
                             </div>
                             <div class="form-group col-sm-6 col-12">
                                 <label>Car Photo</label>
@@ -27,34 +27,34 @@
                             </div>
                             <div class="form-group col-12">
                                 <label for="pickup_address">Pickup & Drop Address</label>
-                                <input type="text" class="form-control" name="pickup_address" id="pickup_address" placeholder="Address">
+                                <input type="text" class="form-control" name="pickup_address" id="pickup_address" required placeholder="Address">
                             </div>
                             <div class="form-group col-sm-4 col-12">
                                 <label for="seater">Seater</label>
-                                <input type="text" class="form-control" name="seater" id="seater" placeholder="seater">
+                                <input type="text" required class="form-control" name="seater" id="seater" placeholder="seater">
                             </div>
                             <div class="form-group col-sm-4 col-12">
                                 <label for="gear">Gear</label>
-                                <select class="form-control" name="gear" id="gear">
+                                <select class="form-control" required name="gear" id="gear">
                                     <option>Auto</option>
                                     <option>Menual</option>
                                 </select>
                             </div>
                             <div class="form-group col-sm-4 col-12">
                                 <label for="bag_allow">Bag / Luggage</label>
-                                <input type="text" name="bag_allow" class="form-control" id="bag_allow" placeholder="Menual">
+                                <input type="text" required name="bag_allow" class="form-control" id="bag_allow" placeholder="Menual">
                             </div>
                             <div class="form-group col-sm-6 col-12">
                                 <label for="age">Age</label>
-                                <input type="text" name="age" class="form-control" id="age" placeholder="Age">
+                                <input type="text" required name="age" class="form-control" id="age" placeholder="Age">
                             </div>
                             <div class="form-group col-sm-6 col-12">
                                 <label for="fuel">fuel</label>
-                                <input type="text" name="fuel" class="form-control" id="fuel" placeholder="fuel">
+                                <input type="text" required name="fuel" class="form-control" id="fuel" placeholder="fuel">
                             </div>
                             <div class="form-group col-sm-6 col-12">
                                 <label for="km">KM</label>
-                                <input type="text" name="km" class="form-control" id="km" placeholder="KM">
+                                <input type="text" required name="km" class="form-control" id="km" placeholder="KM">
                             </div>
                             <!-- <div class="form-group col-sm-6 col-12">
                             <label for="exampleInputCity1">KM</label>
@@ -106,8 +106,7 @@
             // filevalidation(val);
         });
         $('body').on('click', '.submit_car_inst', function() {
-            //$("form[name='user_form']")[0].reset();
-            // alert("hello");
+            
 
             // var editid = $(this).attr("data-edit_id");
             var car_name = $('#car_name').val();
@@ -119,7 +118,7 @@
             var fuel = $('#fuel').val();
             var km = $('#km').val();
 
-            // if (username != "" && phone != "" && firstname != "" && email != "" && role != "" && department != "" && active_form_time != "" && active_to_time != "" && mob_allocation != "" && job_location != "" && head != "" && head_name != "" && head_name != undefined && head != undefined) {
+            if (car_name != "" && pickup_address != "" && seater != "" && gear != "" && bag_allow != "" && age != "" && fuel != "" && km != "" ) {
             var form = $("form[name='add_car_insert']")[0];
             // console.log(form);
             var formdata = new FormData(form);
@@ -215,29 +214,29 @@
             //         error: function (error) { }
             //     });
             // }
-            // } else {
-            //     $('.loader').hide();
-            //     $("form[name='user_form']").addClass("was-validated");
-            //     $("form[name='user_form']").find('.selectpicker').each(function () {
-            //         var selectpicker_valid = 0;
-            //         if ($(this).attr('required') == 'undefined') {
-            //             var selectpicker_valid = 0;
-            //         }
-            //         if ($(this).attr('required') == 'required') {
-            //             var selectpicker_valid = 1;
-            //         }
-            //         if (selectpicker_valid == 1) {
-            //             if ($(this).val() == 0 || $(this).val() == '') {
-            //                 $(this).closest("div").addClass('selectpicker-validation');
-            //             } else {
-            //                 $(this).closest("div").removeClass('selectpicker-validation');
-            //             }
-            //         } else {
-            //             $(this).closest("div").removeClass('selectpicker-validation');
-            //         }
-            //     });
-            //     $('.loader').hide();
-            // }
+            } else {
+                $('.loader').hide();
+                $("form[name='add_car_insert']").addClass("was-validated");
+                $("form[name='add_car_insert']").find('.selectpicker').each(function () {
+                    var selectpicker_valid = 0;
+                    if ($(this).attr('required') == 'undefined') {
+                        var selectpicker_valid = 0;
+                    }
+                    if ($(this).attr('required') == 'required') {
+                        var selectpicker_valid = 1;
+                    }
+                    if (selectpicker_valid == 1) {
+                        if ($(this).val() == 0 || $(this).val() == '') {
+                            $(this).closest("div").addClass('selectpicker-validation');
+                        } else {
+                            $(this).closest("div").removeClass('selectpicker-validation');
+                        }
+                    } else {
+                        $(this).closest("div").removeClass('selectpicker-validation');
+                    }
+                });
+                $('.loader').hide();
+            }
         });
     });
 </script>

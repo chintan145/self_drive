@@ -23,82 +23,8 @@
                             <th> Action </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr id="7349">
-                            <td>7349</td>
-                            <td><img style="width:100px;" src="https://www.justdrive.co.in/cpadmin/upload/car/200x200/26316347dd85f8d9d262f703e2d4b348.png"></td>
-                            <td>Maruti Swift</td>
-                            <td>Surat</td>
-                            <td>Sep 03, 2022 at 18:00</td>
-                            <td>Sep 05, 2022 at 4:00</td>
-                            <td>34</td>
-                            <td>₹3,799.50</td>
-                            <td><span class="status success-bar"><div class="icon">&#10003;</div>Booked</span></td>
-                            <td>Sep 03, 2022 at 04:16 pm</td>
-                            <td><a class="btn default btn-xs green-stripe" href="javascript: myorder_dialog_view('7349');">View </a>
-                                                        
-                            </td>
-                        </tr>
-                        <tr id="3396">
-                            <td>3396</td>
-                            <td></td>
-                            <td>creata</td>
-                            <td>Surat</td>
-                            <td>Jul 11, 2021 at 22:00</td>
-                            <td>Jul 13, 2021 at 22:00</td>
-                            <td>48</td>
-                            <td>₹3,901.00</td>
-                            <td><span class="status pending-bar"><div class="icon">&#9654;</div>pending</span></td>
-                            <td>Jul 10, 2021 at 11:59 am</td>
-                            <td><a class="btn default btn-xs green-stripe" href="javascript: myorder_dialog_view('3396');">View </a>
-                                                        
-                            </td>
-                        </tr>
-                        <tr id="1764">
-                            <td>1764</td>
-                            <td></td>
-                            <td>enoova</td>
-                            <td>Surat</td>
-                            <td>Sep 30, 2020 at 13:00</td>
-                            <td>Sep 30, 2020 at 23:00</td>
-                            <td>10</td>
-                            <td>₹1,971.00</td>
-                            <td><span class="status success-bar"><div class="icon">&#10003;</div>Booked</span></td>
-                            <td>Sep 30, 2020 at 11:55 am</td>
-                            <td><a class="btn default btn-xs green-stripe" href="javascript: myorder_dialog_view('1764');">View </a>
-                                                        
-                            </td>
-                        </tr>
-                        <tr id="1739">  
-                            <td>1739</td>
-                            <td></td>
-                            <td>Maruti Swift</td>
-                            <td>Surat</td>
-                            <td>Sep 25, 2020 at 12:00</td>
-                            <td>Sep 25, 2020 at 22:00</td>
-                            <td>10</td>
-                            <td>₹3,951.00</td>
-                            <td><span class="status pending-bar"><div class="icon">&#9654;</div>pending</span></td>
-                            <td>Sep 25, 2020 at 10:34 am</td>
-                            <td><a class="btn default btn-xs green-stripe" href="javascript: myorder_dialog_view('1739');">View </a>
+                    <tbody id="booking_show_list">
 
-                            </td>
-                        </tr>
-                        <tr id="1743">
-                            <td>1743</td>
-                            <td></td>
-                            <td>vodacity</td>
-                            <td>Surat</td>
-                            <td>Sep 20, 2020 at 16:00</td>
-                            <td>Sep 21, 2020 at 1:00</td>
-                            <td>9</td>
-                            <td>₹3,951.00</td>
-                            <td><span class="status success-bar"><div class="icon">&#10003;</div>Booked</span></td>
-                            <td>Sep 25, 2020 at 06:34 pm</td>
-                            <td><a class="btn default btn-xs green-stripe" href="javascript: myorder_dialog_view('1743');">View </a>
-                                                        
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
 
@@ -109,42 +35,143 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-  Launch demo modal
+    Launch demo modal
 </button>
 
 <!-- Modal -->
 <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="true">
-  <div class="modal-dialog modal-lg  modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">...</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog modal-lg  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <?php include 'partials/footer.php'; ?>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         // var datatable = new DataTable('#datatable');
-        $('#datatable').DataTable( {
-            columnDefs: [ {
-                'targets': [0], /* column index [0,1,2,3]*/
-                'orderable': false, /* true or false */
+        $('#datatable').DataTable({
+            columnDefs: [{
+                'targets': [0],
+                /* column index [0,1,2,3]*/
+                'orderable': false,
+                /* true or false */
             }],
         });
 
-        function myorder_dialog_view(id){
+        function myorder_dialog_view(id) {
             console.log(id);
         }
     });
+
+    function list_data(table = 'car_features', datastatus = '', pageNumber = 1, perPageCount = 10, ajaxsearch = "", filter = "", formdata = "", action = true) {
+        <?php if (isset($_GET['mobileno'])) { ?>
+            var mobileno = '<?php echo $_GET['mobileno']; ?>';
+        <?php } ?>
+        <?php if (isset($_GET['filter_id'])) { ?>
+            var filter_id = '<?php echo $_GET['filter_id']; ?>';
+        <?php } ?>
+        <?php if (isset($_REQUEST['followup'])) { ?>
+            var follow_up_day = '<?php echo $_REQUEST['followup']; ?>';
+        <?php } else { ?>
+            var follow_up_day = '';
+        <?php } ?>
+
+        //  if ($.trim($(".filter-show").html()) != '') {
+        //     var form = $("form[name='filter_form']")[0];
+        //     var formdata = new FormData(form);
+        //     formdata.append('action', 'filter');
+        //     formdata.append('follow_up_day', follow_up_day);
+        //  }
+
+        //  if ($.trim($(".filter-show").html()) == '') {
+        var data = {
+            'table': table,
+            'datastatus': datastatus,
+            'pageNumber': pageNumber,
+            'perPageCount': perPageCount,
+            'follow_up_day': follow_up_day,
+            <?php if (isset($_GET['mobileno'])) { ?> 'global_search_val': mobileno,
+            <?php } ?>
+            <?php if (isset($_GET['filter_id'])) { ?> 'filter_id': filter_id,
+
+            <?php } ?> 'ajaxsearch': ajaxsearch,
+            'action': action,
+        };
+        var processdd = true;
+        var contentType = "application/x-www-form-urlencoded; charset=UTF-8";
+
+        //  } else {
+        //     formdata.append('datastatus', datastatus);
+        //     formdata.append('pageNumber', pageNumber);
+        //     //formdata.append( 'perPageCount', perPageCount);
+        //     //formdata.append( 'follow_up_day', follow_up_day);
+        //     var data = formdata;
+        //     var processdd = false;
+        //     var contentType = false;
+        //  }
+        //  $('body').on('click', '.reg_visit', function(e) {
+        $.ajax({
+            datatype: 'json',
+            method: "POST",
+            url: 'car_show_list_data',
+            data: data,
+            processData: processdd,
+            contentType: contentType,
+            success: function(res) {
+                // console.log(res);
+                //  var result = res;
+                //  var result = JSON.parse(res);
+                if (perPageCount <= 800) {
+                    var result = JSON.parse(res);
+                } else {
+                    var result = res;
+                }
+                //  console.log(result);
+                if (result.response == 1) {
+                    if (result.total_page == 0 || result.total_page == '') {
+                        total_page = 1;
+                    } else {
+                        total_page = result.total_page;
+                    }
+                    // $('#inquiry_all_status_list').html(res);
+                    $('#row_count').html(result.row_count_html);
+                    $('#admin_car_list').html(result.html);
+                    $('.inq_pagination').twbsPagination({
+                        totalPages: total_page,
+                        visiblePages: 4,
+                        next: '>>',
+                        prev: '<<',
+                        onPageClick: function(event, page) {
+                            list_data(table, datastatus, page, perPageCount, ajaxsearch);
+                        }
+                    });
+                }
+
+            }
+        });
+        //  });
+        <?php
+        if (isset($_GET) && !empty($_GET)) { ?>
+            <?php
+            if (isset($_GET['action']) && ($_GET['action'] == 'filter')) { ?>
+                $('.inq_pagination').twbsPagination('destroy');
+            <?php } ?>
+        <?php
+        } ?>
+
+    }
+    list_data();
 </script>

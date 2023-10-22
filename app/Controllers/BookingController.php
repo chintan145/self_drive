@@ -3,9 +3,6 @@
 
 
 namespace App\Controllers;
-
-
-
 use App\Models\MasterInformationModel;
 
 use Config\Database;
@@ -123,7 +120,9 @@ class BookingController extends BaseController
 
 			if (!empty($_POST)) {
 				$insert_data = $_POST;
-				$insert_data['car_image'] = $image['car_image'];
+				if(isset($image) && !empty($image)){
+					$insert_data['car_image'] = $image['car_image'];
+				}
 				$isduplicate = $this->duplicate_data($insert_data, $table_name);
 				if ($isduplicate == 0) {
 					$response = $this->MasterInformationModel->insert_entry($insert_data, $table_name);
