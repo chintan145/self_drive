@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/dataTables.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/materialDateTimePicker.css">
+    <!-- <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-select.css"> -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/iziToast.min.css">
 </head>
 
 <body>
-    <header class="shadow">
+    <header class="shadow" id="myHeader">
         <!-- <div class="top-bar d-md-block d-none">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-end py-3"> -->
@@ -63,10 +65,10 @@
         <div class="headeader border-top">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
-                    <div class="container-fluid">
+                    <div class="container-fluid py-3">
                         <div class="col-lg-2 col-md-3 col-8">
-                            <a href="http://localhost/ajasys-new/">
-                                <img src="https://play-lh.googleusercontent.com/KbaBYy8aDSgOZ38GCS4P8uusI82HfTY2VK_VLP0lQ--E6kQ4DKOHeqfYGWkEwPTsj2E" alt="logo" style="max-height:90px;" class="w-100 px-4 py-2">
+                            <a href="http://localhost/self_drive/">
+                                <img src="<?php echo base_url('') ?>assets/images/Car_Logo_bg.png" alt="logo" style="max-height:90px;" class="w-100">
                             </a>
                         </div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -75,22 +77,22 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="header-nav navbar-nav ms-auto mb-2 mb-lg-0 text-capitalize">
+                            <ul class="header-nav navbar-nav ms-auto me-5 mb-2 mb-lg-0 text-capitalize">
                                 <li class="nav-item">
-                                    <a class="nav-link p-3 HOME" aria-current="page" href="<?php echo base_url('') ?>">Home</a>
+                                    <a class="nav-link p-3 fw-bold text-secondary HOME" aria-current="page" href="<?php echo base_url('') ?>">Home</a>
                                 </li>
                                 <li class="nav-item SERVICES">
-                                    <a class="nav-link p-3" href="<?php echo base_url('/carlist') ?>">Book Now</a>
+                                    <a class="nav-link p-3 fw-bold text-secondary" href="<?php echo base_url('/carlist') ?>">Book Now</a>
                                 </li>
                                 <li class="nav-item PRODUCT">
-                                    <a class="nav-link p-3" href="<?php echo base_url('/myorder') ?>">My Booking</a>
+                                    <a class="nav-link p-3 fw-bold text-secondary" href="<?php echo base_url('/myorder') ?>">My Booking</a>
                                 </li>
                                 <li class="nav-item PRODUCT">
-                                    <a class="nav-link p-3" href="<?php echo base_url('/contactus') ?>">Contact Us</a>
+                                    <a class="nav-link p-3 fw-bold text-secondary" href="<?php echo base_url('/contactus') ?>">Contact Us</a>
                                 </li>
                             </ul>
                             <div>
-                                <button class="btn-web-secondary">Login / SignUp</button>
+                                <button class="btn-secondary border-0 py-2 px-4 rounded">Login / SignUp</button>
                             </div>
                         </div>
                     </div>
@@ -99,4 +101,4 @@
         </div>
     </header>
 
-    <div class="mt-h"></div>
+    <!-- <div class="mt-h"></div> -->

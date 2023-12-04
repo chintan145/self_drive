@@ -48,6 +48,12 @@ if (isset($_GET['startdate']) && isset($_GET['startdate'])) {
         padding-bottom: 30px;
     }
 
+    .main-img {
+        width: 100%;
+        background-image: url(<?= base_url('assets/images/baner_img/pexels-csegedi-joszef-19002745.jpg'); ?>); 
+        background-position: center;
+    }
+
 
     .bgtb {
         background: rgb(255, 255, 255);
@@ -62,9 +68,9 @@ if (isset($_GET['startdate']) && isset($_GET['startdate'])) {
         border-radius: 5px;
     }
 </style>
-<section class="py-50 text-center bg2">
+<section class="py-50 text-center bg2 mian-section main-img">
     <div class="container">
-        <div class="row">
+        <div class="row py-50">
             <h2 class="text-white">Book a Car</h2>
         </div>
     </div>
@@ -73,9 +79,9 @@ if (isset($_GET['startdate']) && isset($_GET['startdate'])) {
 <section class="">
     <div class="container">
         <div class="row d-flex flex-wrap">
-            <div class="col-lg-8 col-12 p-3 order-1 order-lg-0">
+            <div class="col-12 p-3 order-1 order-lg-0">
                 <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-                    <h6 class="mb-4">Prices For :</h6>
+                    <!-- <h6 class="mb-4">Prices For :</h6> -->
                     <div class="fromtodate d-flex flex-lg-row flex-column">
                         <h6 class=""><b>From :</b> <span class="text-danger start_date"><?php echo $startDateString; ?></span></h6>
                         <h6 class="ms-lg-4 ms-0"><b>To :</b> <span class="text-danger end_date"><?php echo $endDateString; ?></span></h6>
@@ -117,36 +123,13 @@ if (isset($_GET['startdate']) && isset($_GET['startdate'])) {
                                 </div>
                             </div>
                             <div class="col-lg-2 col-12 text-end">
-                                <h6>₹<?= $value['price'] ?>/-</h6>
+                                <h6>₹<?= (int) ($value['price'] / 24) * $totalHours ?>/-</h6>
                                 <button id="carview" data-view_id="<?= $value['id'] ?>" class="btn btn-danger book-btn carview">Book Now</button>
                             </div>
                         </div>
                     <?php } ?>
 
 
-                </div>
-            </div>
-            <div class="col-lg-4 col-12 p-3 order-0 order-lg-1">
-                <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-                    <h6>Car Fillter</h6>
-                    <div class="d-flex flex-wrap">
-                        <div class="col-3 shadow-sm p-3 m-1 bg-body-tertiary rounded text-center align-items-center">
-                            <img src="<?= base_url('assets/img/car (1).png') ?>" alt="" class="w-100" style="max-height : 100px; object-fit: contain;">
-                            <span class="ms-auto">Premium SedanV</span>
-                        </div>
-                        <div class="col-3 shadow-sm p-3 m-1 bg-body-tertiary rounded text-center align-items-center">
-                            <img src="<?= base_url('assets/img/suv.png') ?>" alt="" class="w-100" style="max-height : 100px; object-fit: contain;">
-                            <span class="ms-auto">suv</span>
-                        </div>
-                        <div class="col-3 shadow-sm p-3 m-1 bg-body-tertiary rounded text-center align-items-center">
-                            <img src="<?= base_url('assets/img/car.png') ?>" alt="" class="w-100" style="max-height : 100px; object-fit: contain;">
-                            <span class="ms-auto">Compact Sedan</span>
-                        </div>
-                        <div class="col-3 shadow-sm p-3 m-1 bg-body-tertiary rounded text-center align-items-center">
-                            <img src="<?= base_url('assets/img/suv.png') ?>" alt="" class="w-100" style="max-height : 100px; object-fit: contain;">
-                            <span class="ms-auto">MUV</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -165,12 +148,13 @@ if (isset($_GET['startdate']) && isset($_GET['startdate'])) {
             var end_date = $('.end_date').text();
             var total_hour = $('.total_hour').text();
             var city = '<?php echo isset($_GET['city']) &&  $_GET['city'] != '' ? $_GET['city'] : ''; ?>';
+            var price = '<?= (int) ($value['price'] / 24) * $totalHours ?>';
 
             start_date = start_date.replace(' ','_');
             end_date = end_date.replace(' ','_');
             total_hour = total_hour.replace(' ','_');
 
-            window.location.href = url + '?view_id=' + view_id+'&'+"startdate="+start_date+"&enddate="+end_date+"&totalhour="+total_hour+'&city='+city;
+            window.location.href = url + '?view_id=' + view_id+'&'+"startdate="+start_date+"&enddate="+end_date+"&totalhour="+total_hour+'&city='+city+'&price='+price;
         });
 
         

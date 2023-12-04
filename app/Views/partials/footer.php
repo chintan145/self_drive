@@ -160,7 +160,31 @@
     <script src="<?= base_url() ?>assets/js/script.js"></script>
     <script src="<?= base_url() ?>assets/js/dataTables.min.js"></script>
     <script src="<?= base_url() ?>assets/js/iziToast.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/materialDateTimePicker.js"></script>
+    <!-- <script src="<?= base_url() ?>assets/js/bootstrap-select.js"></script> -->
 
+    <script>
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("myHeader");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+                $('.mian-section').css('margin-top','100px');
+            } else {
+                header.classList.remove("sticky");
+                $('.mian-section').css('margin-top','0px');
+            }
+        }
+    </script>
     </body>
 
     </html> 

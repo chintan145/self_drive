@@ -26,35 +26,53 @@ if (isset($_GET['totalhour'])) {
 }
 
 ?>
-<section class="py-50">
+
+<style>
+    .main-img {
+        /* position: fixed; */
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-image: url(<?= base_url('assets/images/baner_img/pexels-csegedi-joszef-19002745.jpg'); ?>); 
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .glass-effect{
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: saturate(180%) blur(4px);
+    }
+</style>
+<section class="py-50 mian-section main-img">
     <div class="container">
         <div class="row">
-            <div class="mb-5 rounded p-4 text-center bg-white">
+            <div class="mb-5 rounded p-4 text-white text-center">
                 <h2>Booking Confirmation</h2>
             </div>
-            <div class="col-lg-6 col-12 order-lg-0 order-1">
-                <div class="shadow p-4 rounded bg-white">
-                    <div class="mb-3 text-start text-dark fw-bold">
+            <div class="col-lg-6 col-12 order-lg-0 order-1 text-white glass-effect">
+                <div class="shadow p-4 rounded">
+                    <div class="mb-3 text-start text-white fw-bold">
                         <h2 class="car_name">Honda Brio</h2>
-                        <h6><span class="text-secondary-emphasis">Total Hour </span><?= $hours; ?></h6>
+                        <h6><span class="text-white">Total Hour </span><?= $hours; ?></h6>
                     </div>
 
-                    <div class="mb-3 shadow-sm p-3 rounded bg-white border border-dark-subtle">
+                    <div class="mb-3 shadow-sm p-3 text-white rounded border-top border-bottom border-light-subtle">
                         <div class="content">
-                            <span class="text-dark">Start Date : </span>
+                            <span class="text-white">Start Date : </span>
                             <span class="p-text-primary startDateString"><?= $startDateString ?></span>
                         </div>
                         <div class="content">
-                            <span class="text-dark">End Date : </span>
+                            <span class="text-white">End Date : </span>
                             <span class="p-text-primary endDateString"><?= $endDateString ?></span>
                         </div>
                         <div class="content">
-                            <span class="text-dark">Pickup & Drop Address : </span>
+                            <span class="text-white">Pickup & Drop Address : </span>
                             <span class="p-text-primary pickup_address"> Just Drive Parking Lot, Opp. Nishal Arcade, Pal, Adajan, Surat</span>
                         </div>
                     </div>
-
-                    <div class="mb-3 shadow-sm p-3 rounded bg-white border border-dark-subtle">
+                    <h6 class="mb-2">Fiture Of This Car</h6>
+                    <div class="mb-3 shadow-sm rounded">
                         <div class="d-flex flex-wrap">
                             <div class="item d-flex align-items-center">
                                 <i class="fa-solid fa-users"></i>
@@ -84,64 +102,68 @@ if (isset($_GET['totalhour'])) {
                     </div>
 
                     <div class="contant">
-                        <form name="proof_data">
+                        <form name="proof_data" class="d-flex flex-column">
                             <label class="mb-3">
                                 <span>Mobile Number</span>
-                                <input type="number" name="mobileno" id="mobileno" class="form-control">        
+                                <input type="number" placeholder="Number" name="mobileno" id="mobileno" class="form-control" required>        
                             </label>
                             <label class="mb-3">
                                 <span>Driving License</span>
-                                <input type="file" name="driving_license" id="driving_license" class="form-control">        
+                                <input type="file" name="driving_license" id="driving_license" class="form-control" required>        
                             </label>
                             <label class="mb-3">
                                 <span>Addar Card Photo</span>
-                                <input type="file" name="addar_card" id="addar_card" class="form-control">        
+                                <input type="file" name="addar_card" id="addar_card" class="form-control" required>        
                             </label>
                             <label class="mb-3">
                                 <span>Pan Card Photo</span>
-                                <input type="file" name="pan_card" id="pan_card"  class="form-control">        
+                                <input type="file" name="pan_card" id="pan_card"  class="form-control" required>        
+                            </label>
+                            <label class="mb-3">
+                                <input type="checkbox" name="drop_facility" id="drop_facility">        
+                                <span>Pickup &amp; Drop Facility.</span>
+                            </label>
+                            <label class="mb-3">
+                                <input type="checkbox" name="drop_facility" id="drop_facility">        
+                                <span>I agree to these Terms and Conditions.</span>
                             </label>
                         </form>
-                        <label class="mb-3">
-                            <input type="checkbox" name="drop_facility" id="drop_facility">        
-                            <span>Pickup &amp; Drop Facility.</span>
-                        </label>
-                        <h5><span class="text-dark">Total Cost : <span class="p-text-primary d-flex">₹<div class="price">2,779.50</div>/-</span></span></h5>
+                        <h5><span class="text-white d-flex">Total Cost : <span class="p-text-primary d-flex"> ₹<div class="price"><?= $_REQUEST['price'] ?></div>/-</span></span></h5>
                         <h5>+ Pickup & Drop Add on charge : Chargeable</h5>
                         <h5>+ Security Deposit Payable After Booking.</h5>
-                        <h4 class="mt-3"><span class="text-dark">Grand Total : <span class="p-text-primary d-flex">₹<div class="price">2,779.50</div>/-</span></span></h4>
+                        <h4 class="mt-3 d-flex"><span class="text-white ">Grand Total : </span><span class="p-text-primary d-flex"> ₹<div class="price"><?= $_REQUEST['price'] ?></div>/-</span></h4>
                         <button id="book-btn" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Book Now</button>
                         <button id="cancelcarview" data-view_id="1001" class="btn btn-dark book-btn carview mt-3">Cancel</button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-12 order-lg-0 order-1">
+            <div class="col-lg-6 col-12 order-lg-0 order-1 glass-effect">
                 <div class="shadow p-2 rounded bg-white">
                     <img src="<?=base_url('assets/img/car1.png') ?>" alt="" class="w-100 car_image" style="max-height : 500px; object-fit: contain;">
                 </div>
-                <div class="shadow rounded bg-white p-4">
+                <div class="shadow rounded text-white p-4">
                     <h5 class="mb-3">Important Points to Remember</h5>
                     <table class="table" style="font-size: 12px;">
                         <tbody>
                             <tr>
-                                <td>PENALTY:</td>
-                                <td>In case of damage, the user will have to pay deposit. (Min: INR 5000 Max: As per damage)</td>
+                                <td class="text-white">PENALTY:</td>
+                                <td class="text-white">In case of damage, the user will have to pay deposit. (Min: INR 5000 Max: As per damage)</td>
                             </tr>
                             <tr>
-                                <td>FUEL:</td>
-                                <td>Level to Level. Pickup &amp; return with same level of fuel. </td>
+                                <td class="text-white">FUEL:</td>
+                                <td class="text-white">Level to Level. Pickup &amp; return with same level of fuel. </td>
                             </tr>
                             <tr>
-                                <td>TOLLS, PARKING, INTER-STATE TAXES:</td>
-                                <td>To be paid by you.</td>
+                                <td class="text-white">TOLLS, PARKING, INTER-STATE TAXES:</td>
+                                <td class="text-white">To be paid by you.</td>
                             </tr>
                             <tr>
-                                <td>ID VERIFICATION:</td>
-                                <td>Please keep your original Driving License handy. While delivering the car to you, our executive will verify your original Driving License and ID proof (same as the ones whose details were provided while making the booking). This verification is mandatory. In the unfortunate case where you cannot show these documents, we will not be able to handover the car to you, and it will be treated as a late cancellation (100% of the fare would be payable). Driving license printed on an A4 sheet of paper (original or otherwise) will not be considered as a valid document.</td>
+                                <td class="text-white">ID VERIFICATION:</td>
+                                <td class="text-white">Please keep your original Driving License handy. While delivering the car to you, our executive will verify your original Driving License and ID proof (same as the ones whose details were provided while making the booking). This verification is mandatory. In the unfortunate case where you cannot show these documents, we will not be able to handover the car to you, and it will be treated as a late cancellation (100% of the fare would be payable). Driving license printed on an A4 sheet of paper (original or otherwise) will not be considered as a valid document.</td>
                             </tr>
                             <tr>
-                                <td>PRE-HANDOVER INSPECTION:</td>
-                                <td>Please inspect the car (including the fuel gauge and odometer) thoroughly before approving the checklist.</td>
+                                <td class="text-white">PRE-HANDOVER INSPECTION:</td>
+                                <td class="text-white">Please inspect the car (including the fuel gauge and odometer) thoroughly before approving the checklist.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -181,7 +203,7 @@ if (isset($_GET['totalhour'])) {
                     // console.log(res);
                     $('.car_image').attr('src',img_url+res.car_image);
                     $.each(res,function( key,index ) {
-                        if(key != 'car_image'){
+                        if(key != 'car_image' && key != 'price'){
                             $('.'+key).text(index);
                         }
                     });
@@ -208,7 +230,7 @@ if (isset($_GET['totalhour'])) {
             formdata.append('start_date',startDateString);
             formdata.append('end_date',endDateString);
             formdata.append('city',city);
-            // if(number != '' && addar_card != '' && pan_card != '' && driving_license != ''){
+            if($('#drop_facility').is(':checked') == true && number != '' && addar_card != '' && pan_card != '' && driving_license != ''){
                 formdata.append('drop_facility',1);
                 $.ajax({
                     method: "post",
@@ -235,7 +257,29 @@ if (isset($_GET['totalhour'])) {
                         }
                     }
                 });
-            // }
+            } else {
+                $('.loader').hide();
+                $('form[name="proof_data"]').addClass("was-validated");
+                $('form[name="proof_data"]').find('.selectpicker').each(function () {
+                    var selectpicker_valid = 0;
+                    if ($(this).attr('required') == 'undefined') {
+                        var selectpicker_valid = 0;
+                    }
+                    if ($(this).attr('required') == 'required') {
+                        var selectpicker_valid = 1;
+                    }
+                    if (selectpicker_valid == 1) {
+                        if ($(this).val() == 0 || $(this).val() == '') {
+                            $(this).closest("div").addClass('selectpicker-validation');
+                        } else {
+                            $(this).closest("div").removeClass('selectpicker-validation');
+                        }
+                    } else {
+                        $(this).closest("div").removeClass('selectpicker-validation');
+                    }
+                });
+                $('.loader').hide();
+            }
         });
 
         $('body').on('click', '.book_now', function (event) {

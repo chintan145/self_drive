@@ -5,8 +5,10 @@
     --first-color: #2b3140;
     --first-color-rgb: 43, 49, 64;
     --second-color: #042940;
+    --second-color-light: rgb(6, 101, 159);
     /* --second-color: #ff1c1c; */
     --second-color-rgb: 4, 41, 64;
+    --second-color-light-rgb: 6, 101, 159;
     /* --second-color-rgb: 255, 28, 28; */
     --white-color: #fff;
     --all-white: #fff;
@@ -272,10 +274,11 @@ background: linear-gradient(120deg, rgba(255,28,28,1) 0%, rgba(255,92,92,1) 48%,
 }
 
 .form-control {
-    background-color: #f8f8f8;
+    background-color: rgba(248, 248, 248, .9);
+    /* background-color: rgba(var(--second-color-rgb),.3); */
     border-radius: 10px;
     border: 1px solid #f8f8f8;
-    border-left: 3px solid var(--second-color);
+    border-bottom: 0px solid var(--second-color);
     padding: 12px;
     padding-left: 16px;
     box-shadow: 0px 5px 10px rgb(0, 0, 0, .2);
@@ -289,13 +292,15 @@ background: linear-gradient(120deg, rgba(255,28,28,1) 0%, rgba(255,92,92,1) 48%,
 }
 
 .form-control:focus {
-    background-color: rgba(var(--second-color-rgb),.5);
-    color: var(--second-color);
+    background-color: rgba(var(--second-color-rgb),.3);
+    color: var(--white-color);
     box-shadow: none;
     border: 1px solid #f8f8f8;
     outline: none;
-    border-left: 4px solid var(--second-color);
+    border-left: 4px solid var(--second-color-light);
 }
+
+
 
 .form-check-input:focus {
     border: 0.8px solid #dee2e6;
@@ -472,6 +477,27 @@ header {
     border-radius: 20px;
 }
 
+.content {
+    padding: 16px;
+}
+
+#myHeader {
+    left: 0;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%
+}
+
+.sticky + .content {
+    padding-top: 102px;
+}
+
+
+
 /* services */
 
 .service-img img {
@@ -489,13 +515,43 @@ header {
 .services .services-icon-box {
     width: 100px;
     height: 100px;
-    transform: translate(-50%, -50%)rotate(45deg);
+    transform: translate(47%, -50%);
     background: rgb(255, 61, 61);
-    background: linear-gradient(90deg, rgb(252, 79, 79) 0%, rgba(43, 49, 64, 1) 100%);
+    background: linear-gradient(90deg, rgb(252, 79, 79) 0%, rgb(89, 19, 19) 100%);
+    animation: services-icon-box-animation 3s infinite ease-in-out;
 }
 
+.features-imgs {
+    animation: features-icon-box-animation 3s infinite ease-in-out;
+}
+
+@keyframes services-icon-box-animation {
+    0%{
+        transform: translate(47%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(47%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(47%, -50%) scale(1);
+    }
+}
+
+@keyframes features-icon-box-animation {
+    0%{
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
 .services .services-icon-box img {
-    transform: rotate(-45deg);
+    /* transform: rotate(-45deg); */
 }
 
 .bg2 {
@@ -507,8 +563,8 @@ header {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    /* transform: translateX(-50%); */
     width: 40%;
     height: 3px;
     background: rgb(252, 79, 79);
@@ -578,7 +634,8 @@ thead {
     border-radius : 5px;
 }
 .p-text-primary{
-    color: var(--second-color);
+    /* color: var(--second-color); */
+    color: #d00000;
 }
 
 .modal-bg {

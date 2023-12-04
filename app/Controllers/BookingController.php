@@ -170,13 +170,13 @@ class BookingController extends BaseController
 				$car_full_image = "";
 				if (isset($value['car_id']) && !empty($value['car_id'])) {
 					$car_image = IdToFieldGetData('car_image', "id=" . $value['car_id'] . "", "car_features");
-					$car_full_image = isset($car_image['car_image']) && !empty($car_image['car_image']) ? $car_full_price['car_image'] : '';
+					$car_full_image = isset($car_image['car_image']) && !empty($car_image['car_image']) ? $car_image['car_image'] : '';
 				}
 			
 				$html .= '<tr>';
 				$html .= '  
 				<td>' . $value['id'] . '</td>
-				<td><a class="dropdown-item" href="'<?= base_url('assets/images/carimages/' . $car_full_image);'"> </td>
+				<td><img class="dropdown-item" src="'. base_url('assets/images/carimages/' . $car_full_image).'"> </td>
 				<td>' . $car_details . '</td>
 				<td>' . $value['city'] . '</td>
 				<td>' . $value['start_date'] . '</td>
