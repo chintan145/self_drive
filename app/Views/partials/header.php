@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/dataTables.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/materialDateTimePicker.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-select.css"> -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/iziToast.min.css">
 </head>

@@ -4,6 +4,7 @@
         width: 100%;
         background-image: url(<?= base_url('assets/images/baner_img/pexels-csegedi-joszef-19002745.jpg'); ?>); 
         background-position: center;
+        background-size: cover;
     }
 
     .glass-effect, .features-box::after{
@@ -76,7 +77,7 @@
                             </label>
                         </div> -->
                         <div class="mb-3 col-12 d-flex align-items-end pb-3 justify-content-center ">
-                            <button class="btn-web-secondary w-25 mt-1 book_now" id="book_now">Book Now</button>
+                            <button type="button" class="btn-web-secondary w-25 mt-1 book_now" id="book_now">Book Now</button>
                         </div>
                     </div>
                 </form>

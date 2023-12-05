@@ -11,6 +11,7 @@ if (isset($_GET['startdate']) && $_GET['startdate'] != '_') {
         window.location.href = "<?= base_url(); ?>";
     </script>
 <?php
+    die();
 }
 if (isset($_GET['enddate']) && $_GET['enddate'] != '_') {
     $endDateString = str_replace('_', ' ', $_GET['enddate']);
@@ -23,6 +24,7 @@ if (isset($_GET['enddate']) && $_GET['enddate'] != '_') {
         window.location.href = "<?= base_url(); ?>";
     </script>
 <?php
+    die();
 }
 
 if (!isset($_GET['city'])) {
@@ -31,6 +33,7 @@ if (!isset($_GET['city'])) {
         window.location.href = "<?= base_url(); ?>";
     </script>
 <?php
+    die();
 }
 
 if (isset($_GET['startdate']) && isset($_GET['startdate'])) {

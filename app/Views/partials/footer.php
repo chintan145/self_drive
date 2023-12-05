@@ -53,7 +53,7 @@
     }
 
     </style>
-    <script src="https://madhavtechinfo.000webhostapp.com/assets/js/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>/assets/js/jquery.min.js"></script>
 
     <footer class="footer py-50  pb-0 overflow-hidden position-relative">
         <div class="hero-bg"></div>
@@ -167,6 +167,7 @@
     <script>
         // When the user scrolls the page, execute myFunction
         window.onscroll = function() {myFunction()};
+        window.onscroll.ease(200);
 
         // Get the header
         var header = document.getElementById("myHeader");
